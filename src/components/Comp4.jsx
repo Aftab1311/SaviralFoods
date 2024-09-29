@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
         </div>
         <img src={product.imageSrc} alt={product.name} className="w-full h-44 object-center mb-4 rounded-md" />
         <div className="text-center">
-          <div className="text-xs text-gray-600 uppercase tracking-wide mb-1">ORGANIC FRUITS</div>
+          <div className="text-xs text-gray-600 uppercase tracking-wide mb-1">Fresh Atta</div>
           <div className="text-lg font-bold text-gray-800 mb-2 capitalize">fresh {product.name}</div>
         </div>
       </div>

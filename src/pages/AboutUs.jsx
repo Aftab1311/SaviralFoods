@@ -187,7 +187,7 @@ const AboutPage = () => {
       <section className="relative" style={styles.aboutHeader}>
         <div>
           <h1 style={styles.aboutTitle}>
-            about <span style={styles.highlight}>The Maangerams</span>  
+            about <span style={styles.highlight}>Saviral</span>  
           </h1>
           <div style={styles.breadcrumb}>
             <span>HOME / ABOUT</span>
@@ -200,7 +200,7 @@ const AboutPage = () => {
         <img src="/images/wave.png" alt="Grapefruit" style={styles.image2} />
 
         <div style={styles.imageContainer}>
-          <img src="/images/icon-1.png" alt="Grapefruit" style={styles.image} />
+          <img src="/images/Navs.png" alt="Grapefruit" style={styles.image} />
         </div>
         <div style={styles.contentText}>
           <p>⭐⭐⭐ a taste of <span style={styles.highlight}>real food</span>⭐⭐⭐ </p>
@@ -210,11 +210,11 @@ const AboutPage = () => {
         <div className='flex justify-center flex-col w-full items-center'>
       <div className="md:w-1/2 text-center md:text-left">
             <h1 className="text-2xl md:text-3xl lg:text-4xl mb-2 text-center">we are <span className="font-bold">organic  </span></h1>
-            <h3 className="text-sm md:text-base lg:text-lg text-center">----ABOUT The Maangerams  ----</h3>
+            <h3 className="text-sm md:text-base lg:text-lg text-center">----ABOUT The Saviral  ----</h3>
           </div>
         <div className="flex flex-col md:flex-row items-center justify-center mt-8 mb-8">
           <p className="text-base md:text-lg lg:text-lg mb-8 md:mb-0 md:w-1/2">
-          At Maangeram  we are dedicated to providing the freshest, highest-quality produce straight from the farm to your table. Our commitment to sustainability and excellence drives us to source only the best fruits and vegetables, ensuring that our customers receive nutritious, flavorful, and naturally grown produce.
+          At Saviral  we are dedicated to providing the freshest, highest-quality produce straight from the farm to your table. Our commitment to sustainability and excellence drives us to source only the best Food Items, ensuring that our customers receive nutritious, flavorful, and naturally grown produce.
           </p>
           
         </div>
@@ -235,7 +235,7 @@ const AboutPage = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <img src="/images/feature.png" alt="Organic Grapefruit" className="max-w-full h-auto mx-auto" />
+          <img src="/images/bora.png" alt="Organic Grapefruit" className="max-w-full h-auto mx-auto" />
         </div>
       </div>
 

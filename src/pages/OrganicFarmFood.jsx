@@ -2,7 +2,7 @@ import React from 'react';
 
 const Organic  = () => {
   const features = [
-    { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'The Maangerams farm' },
+    { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'The Saviral ' },
     { icon: 'feature-2.png', title: '100%', boldTitle: 'organic dairy' },
     { icon: 'feature-3.png', title: 'premium', boldTitle: 'quality' },
     { icon: 'feature-4.png', title: '100%', boldTitle: 'natural' },
@@ -19,9 +19,9 @@ const Organic  = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#505050] mb-2">
           we are <span className="font-bold text-[#515153]">organic  </span>
         </h1>
-        <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT The Maangerams  ----</h3>
+        <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT The Saviral  ----</h3>
         <p className="text-base sm:text-lg text-[#7a7a7a] max-w-3xl mx-auto mb-12 lg:mb-24">
-At The Maangerams, we are dedicated to providing the freshest, highest-quality dairy products straight from our farm to your table. Our commitment to sustainability and excellence drives us to produce only the best milk, cheese, and yogurt, ensuring that our customers receive nutritious, flavorful, and naturally crafted dairy goods. We complement our dairy offerings with a selection of farm-fresh vegetables and fruits to provide a complete, wholesome experience.
+        Welcome to Saviral, your go-to destination for wholesome ingredients! We specialize in high-quality atta (whole wheat flour) sourced from freshly milled grains, ensuring you get the best nutrition and flavor for your rotis and baked goods.
 </p>
 
         <div className="relative">
@@ -51,7 +51,7 @@ At The Maangerams, we are dedicated to providing the freshest, highest-quality d
         </div>
 
       </div>
-      <img src="/images/feature.png" alt="Organic Grapefruit" className="mx-auto mt-16 -mb-72 z-[100]" />
+      <img src="/images/bora.png" alt="Organic Grapefruit" className="mx-auto mt-16 -mb-72 z-[100]" />
     </div>
   );
 };

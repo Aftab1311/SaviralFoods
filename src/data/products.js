@@ -1,50 +1,50 @@
 export const products = [
   {
     id: "COW001",
-    name: "Raw Cow Milk",
+    name: "Kachi Ghani Oil",
     price: 60,
     oldPrice: 72,
     quantity: "One Litre",
-    description: "Pure, wholesome, and naturally rich in nutrients, our cow milk is sourced from grass-fed cows, offering a fresh and creamy taste.",
-    imageSrc: "/images/raw-cow-milk.jpg",
+    description: "Ideal for cooking, frying, and salad dressings, this oil enhances the taste of dishes while promoting a healthy lifestyle. Its unrefined nature means it’s free from chemicals and additives, making it a natural choice for health-conscious consumers. .",
+    imageSrc: "/images/oilsav.jpg",
     otherImages: [
-      "/images/raw-cow-milk-1.png",
-      "/images/raw-cow-milk-2.jpg",
+      "/images/oilsav.jpg",
+      "/images/oilsav.jpg",
     ],
     tags: ["grass-fed", "fresh"],
     onSale: false,
     toShowcase: true,
-    category: "Dairy",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/scd69p"
+    buyNowLink: "https://wa.link/4xognz "
   },
   {
     id: "BUF002",
-    name: "Raw Buffalo Milk",
+    name: "Chana Atta",
     price: 75,
     oldPrice: 80,
     quantity: "One Litre",
-    description: "Indulge in the rich, creamy goodness of our buffalo milk, packed with natural nutrients and a full-bodied flavor.",
-    imageSrc: "/images/raw-buffalo-milk.png",
+    description: "Rich in essential nutrients, it adds a nutty flavor and a slightly grainy texture to dishes. Chana Atta can be used to make a variety of recipes, including pancakes (besan chilla), fritters (bhaji), and thickening agents for soups and sauces. Its versatility also extends to baking, where it can enhance the nutritional profile of breads and pastries..",
+    imageSrc: "/images/Channa atta.jpg",
     otherImages: [
-      "/images/raw-buffalo-milk-1.png",
+      "/images/Channa atta.jpg",
       // "/images/raw-buffalo-milk-2.jpg",
     ],
     tags: ["creamy", "nutrient-rich"],
     onSale: true,
     toShowcase: false,
-    category: "Dairy",
+    category: "Atta",
     isNew: true,
-    buyNowLink: "https://wa.link/xudlmv"
+    buyNowLink: "https://wa.link/9zr15f"
   },
   {
     id: "COWGHEE001",
-    name: "Cow Ghee",
+    name: "Mustard Oil",
     price: 0, // Please adjust the price as needed
     oldPrice: 0, // Please adjust the old price as needed
     quantity: "500 grams", // Please adjust the quantity as needed
-    description: "Pure and aromatic cow ghee, rich in nutrients and perfect for cooking or as a condiment.",
-    imageSrc: "", // Please ensure this image exists
+    description: "Rich in monounsaturated fats and omega-3 fatty acids, mustard oil is believed to support heart health and boost metabolism. It contains compounds like erucic acid and glucosinolates, which may have anti-inflammatory and antioxidant properties.",
+    imageSrc: "/images/Saviral oil mustard.jpg", // Please ensure this image exists
     otherImages: [
       "",
       "",
@@ -52,18 +52,18 @@ export const products = [
     tags: ["pure", "nutritious"],
     onSale: true,
     toShowcase: true,
-    category: "Dairy",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/mxmes9"
+    buyNowLink: "https://wa.link/63mfk5"
   },
   {
     id: "BUFGHEE001",
-    name: "Buffalo Ghee",
+    name: "Multigrain",
     price: 0, // Please adjust the price as needed
     oldPrice: 0, // Please adjust the old price as needed
     quantity: "500 grams", // Please adjust the quantity as needed
-    description: "Rich and flavorful buffalo ghee, perfect for enhancing the taste of your dishes.",
-    imageSrc: "", // Please ensure this image exists
+    description: "The diverse combination of grains provides a rich flavor and texture, making multigrain products not only healthy but also satisfying. These foods are known to support digestive health, regulate blood sugar levels, and promote overall well-being.",
+    imageSrc: "/images/Multigrain.jpg", // Please ensure this image exists
     otherImages: [
       "",
       "",
@@ -71,248 +71,248 @@ export const products = [
     tags: ["rich", "flavorful"],
     onSale: true,
     toShowcase: false,
-    category: "Dairy",
+    category: "Atta",
     isNew: false,
-    buyNowLink: "https://wa.link/0sv55s"
+    buyNowLink: "https://wa.link/mvduh9"
   },
   {
     id: "PAN003",
-    name: "Paneer",
+    name: "Sugar",
     price: 360,
     oldPrice: 400,
     quantity: "One Kilogram",
-    description: "Experience the rich taste of tradition with our paneer, made from the freshest milk for unmatched purity and flavor.",
-    imageSrc: "/images/paneer.jpeg",
+    description: "In addition to its role as a sweetener, sugar is also used in baking, preserving, and fermentation processes. It contributes to the texture and browning of baked goods and can enhance the taste of fruits and vegetables in preserves and jams.",
+    imageSrc: "/images/Sugar release.jpg",
     otherImages: [
-      "/images/paneer-1.jpeg",
-      "/images/paneer-2.jpeg",
+      "/images/Sugar release.jpg",
+      "/images/Sugar release.jpeg",
     ],
     tags: ["traditional", "fresh"],
     onSale: false,
     toShowcase: true,
-    category: "Dairy",
+    category: "Rice",
     isNew: false,
-    buyNowLink: "https://wa.link/17aa6l"
+    buyNowLink: "https://wa.link/eyxjcn"
   },
   {
     id: "CRD004",
-    name: "Curd",
+    name: "Makka Atta",
     price: 100,
     oldPrice: 120,
     quantity: "One Kilogram",
-    description: "Thick, creamy, and naturally cultured, our curd is crafted from the finest milk for a rich and tangy taste.",
-    imageSrc: "/images/curd.png",
+    description: "Makka Atta is naturally gluten-free, making it a great alternative for those with gluten sensitivities. It is rich in carbohydrates, fiber, and essential nutrients like vitamins B and E, which contribute to overall health. Its slightly sweet and earthy flavor adds a unique taste to both savory and sweet dishes.",
+    imageSrc: "/images/Makka atta.jpg",
     otherImages: [
-      "/images/curd-1.jpeg",
+      "/images/Makka atta.jpg",
     ],
     tags: ["probiotic", "creamy"],
     onSale: true,
     toShowcase: false,
-    category: "Dairy",
+    category: "Atta",
     isNew: false,
-    buyNowLink: "https://wa.link/il67m7"
+    buyNowLink: "https://wa.link/y2x3wn"
   },
   {
     id: "LSS005",
-    name: "Lassi",
+    name: "Barley",
     price: 80,
     oldPrice: 90,
     quantity: "One Litre",
-    description: "Chilled and flavorful, our lassi delivers a taste of tradition with every sip, made from pure, wholesome yogurt.",
-    imageSrc: "/images/lassi.png",
+    description: "Rich in dietary fiber, vitamins (particularly B vitamins), and minerals such as selenium and magnesium, barley offers numerous health benefits. It aids digestion, helps regulate blood sugar levels, and supports heart health. The grain is also a good source of antioxidants, which can help combat inflammation.",
+    imageSrc: "/images/Barley.jpg",
     otherImages: [
-      "/images/lassi-1.jpeg",
-      "/images/lassi-2.jpeg",
+      "/images/Barley.jpg",
+      "/images/Barley.jpg",
     ],
     tags: ["traditional", "refreshing"],
     onSale: false,
     toShowcase: true,
-    category: "Dairy",
+    category: "Rice",
     isNew: true,
-    buyNowLink: "https://wa.link/gqxkkv"
+    buyNowLink: "https://wa.link/dsyspm"
   },
   {
     id: "TOMATO001",
-    name: "Tomatoes",
+    name: "Mustard Oil",
     price: 40,
     oldPrice: 50,
     quantity: "500 grams",
-    description: "Farm-fresh tomatoes bursting with natural flavor and goodness.",
-    imageSrc: "/images/tomato.jpeg",
+    description: "Rich in monounsaturated fats and omega-3 fatty acids, mustard oil is often associated with various health benefits, including promoting heart health and reducing inflammation. It also contains compounds like erucic acid and antioxidants, which can support overall wellness.",
+    imageSrc: "/images/Yellow mustard oil.jpg",
     otherImages: [
-      "/images/deal.png",
+      "/images/Yellow mustard oil.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/vmwkoi"
+    buyNowLink: "https://wa.link/ekdcle"
   },
   {
     id: "ONION001",
-    name: "Onions",
+    name: "Ragi",
     price: 0,
     oldPrice: 0,
     quantity: "500 grams",
-    description: "Pure onions with rich, robust flavor straight from our farm.",
-    imageSrc: "/images/onions.jpeg",
+    description: "The grain has a slightly nutty flavor and is often used in various traditional dishes, such as ragi mudde (a savory ball), porridge, and baked goods. Its high fiber content helps in digestion and maintaining stable blood sugar levels, making it beneficial for those with diabetes..",
+    imageSrc: "/images/Ragi.jpg",
     otherImages: [
-      "/images/onion.png",
+      "/images/Ragi.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Rice",
     isNew: false,
-    buyNowLink: "https://wa.link/bbxff6"
+    buyNowLink: "https://wa.link/9ga6gm"
   },
   {
     id: "POTATO001",
-    name: "Potatoes",
+    name: "Fresh Atta",
     price: 0,
     oldPrice: 0,
     quantity: "1 kilogram",
-    description: "Our potatoes deliver farm-fresh flavor and hearty nourishment.",
-    imageSrc: "/images/potatoes.jpeg",
+    description: "The fine texture and slightly nutty flavor of Fresh Atta make it an ideal choice for dough, resulting in soft and pliable breads. It is known for its health benefits, including aiding digestion, providing sustained energy, and supporting heart health.",
+    imageSrc: "/images/Chaki fresh atta.jpg",
     otherImages: [
-      "/images/potatoes-1.jpeg",
-      "/images/potatoes-2.jpeg",
+      "/images/Chaki fresh atta.jpg",
+      "/images/Chaki fresh atta.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Atta",
     isNew: false,
-    buyNowLink: "https://wa.link/7e3wxk"
+    buyNowLink: "https://wa.link/0sgtoa"
   },
   {
     id: "LADYFINGER001",
-    name: "Lady Finger",
+    name: "Basmati Rice",
     price: 0,
     oldPrice: 0,
     quantity: "250 grams",
-    description: "Freshly harvested lady finger, straight from our farm to your table.",
-    imageSrc: "/images/ladyfinger.jpeg",
+    description: "Freshly harvested Rice, straight from our farm to your table.",
+    imageSrc: "/images/Basmati rice.jpg",
     otherImages: [
-      "/images/ladyfinger-1.jpeg",
-      "/images/ladyfinger-2.jpg",
+      "/images/Basmati rice.jpg",
+      "/images/Basmati rice.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Rice",
     isNew: true,
-    buyNowLink: "https://wa.link/4v9k2i"
+    buyNowLink: "https://wa.link/58zcsu"
   },
   {
     id: "CUCUMBER001",
-    name: "Cucumber",
+    name: "Ghani Oil",
     price: 0,
     oldPrice: 0,
     quantity: "500 grams",
-    description: "Delight in the freshness of our cucumbers, carefully grown and harvested from the farm.",
-    imageSrc: "/images/cucumber.jpeg",
+    description: "Delight in the freshness of our Oil, carefully grown and harvested from the farm.",
+    imageSrc: "/images/Ghani oil.jpg",
     otherImages: [
-      "/images/cucumber-1.jpeg",
-      "/images/cucumber-2.jpeg",
+      "/images/Ghani oil.jpg",
+      "/images/Ghani oil.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/uahjx0"
+    buyNowLink: "https://wa.link/1kv22o"
   },
   {
     id: "GINGER001",
-    name: "Ginger",
+    name: "Oil",
     price: 0,
     oldPrice: 0,
     quantity: "250 grams",
-    description: "Naturally grown ginger, packed with vibrant flavor and freshness.",
-    imageSrc: "/images/ginger.jpeg",
+    description: "Naturally grown Oil, packed with vibrant flavor and freshness.",
+    imageSrc: "/images/oilsav.jpg",
     otherImages: [
-      "/images/ginger-1.jpeg",
+      "/images/oilsav.jpg",
     ],
     tags: ["farm-fresh", "spices"],
     onSale: true,
     toShowcase: false,
-    category: "Spices",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/wmqq5n"
+    buyNowLink: "https://wa.link/6v2a1q"
   },
   {
     id: "CAULIFLOWER001",
-    name: "Cauliflower",
+    name: "Chana Atta",
     price: 0,
     oldPrice: 0,
     quantity: "One piece",
-    description: "Rich in antioxidants and low in calories, our farm-fresh cauliflower is perfect for a healthy, guilt-free meal.",
-    imageSrc: "/images/cauliflower.jpeg",
+    description: "The fine texture and slightly nutty flavor of Fresh Atta make it an ideal choice for dough, resulting in soft and pliable breads. It is known for its health benefits, including aiding digestion, providing sustained energy, and supporting heart health.",
+    imageSrc: "/images/Channa atta.jpg",
     otherImages: [
-      "/images/cauliflower-1.jpeg",
+      "/images/Channa atta.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Atta",
     isNew: false,
-    buyNowLink: "https://wa.link/gq6tz6"
+    buyNowLink: "https://wa.link/cccttx"
   },
   {
     id: "RADISH001",
-    name: "Radish",
+    name: "Mustard Oil",
     price: 0,
     oldPrice: 0,
     quantity: "500 grams",
-    description: "Our radishes are freshly dug, offering a crunchy texture and zesty flavor.",
-    imageSrc: "/images/radish.jpeg",
+    description: "Rich in monounsaturated fats and omega-3 fatty acids, mustard oil is often associated with various health benefits, including promoting heart health and reducing inflammation. It also contains compounds like erucic acid and antioxidants, which can support overall wellness.",
+    imageSrc: "/images/Saviral oil mustard.jpg",
     otherImages: [
-      "/images/radish-1.jpeg",
+      "/images/Saviral oil mustard.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,
     toShowcase: false,
-    category: "Vegetables",
+    category: "Oil",
     isNew: false,
-    buyNowLink: "https://wa.link/9cvztg"
+    buyNowLink: "https://wa.link/63mfk5"
   },
   {
     id: "APPLE001",
-    name: "Apples",
+    name: "Chana Atta",
     price: 0,
     oldPrice: 0,
     quantity: "1 kilogram",
     description: "With their fine quality and vibrant flavor, our apples are not only delicious but also a nutritious choice, loaded with vitamins A and C.",
-    imageSrc: "/images/apples.jpeg",
+    imageSrc: "/images/Channa atta.jpg",
     otherImages: [
-      "/images/apples-1.jpeg",
+      "/images/Channa atta.jpg",
     ],
     tags: ["farm-fresh", "fruits"],
     onSale: true,
     toShowcase: true,
-    category: "Fruits",
+    category: "Atta",
     isNew: false,
-    buyNowLink: "https://wa.link/eo743w"
+    buyNowLink: "https://wa.link/9zr15f"
   },
   {
     id: "BANANA001",
-    name: "Bananas",
+    name: "Sugar",
     price: 0,
     oldPrice: 0,
     quantity: "1 dozen",
     description: "Our bananas are naturally sweet and perfectly ripened, providing a convenient and nutritious snack straight from our farm.",
-    imageSrc: "/images/bananas.jpeg",
+    imageSrc: "/images/Sugar release.jpg",
     otherImages: [
-      "/images/bananas-1.jpeg",
+      "/images/Sugar release.jpg",
     ],
     tags: ["farm-fresh", "fruits"],
     onSale: true,
     toShowcase: false,
-    category: "Fruits",
+    category: "Sugar",
     isNew: false,
-    buyNowLink: "https://wa.link/tm0kds"
+    buyNowLink: "https://wa.link/73hwxa"
   },
   
 ];

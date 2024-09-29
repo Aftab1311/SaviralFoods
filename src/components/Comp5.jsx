@@ -117,10 +117,10 @@ const Comp5 = () => {
 
         <div style={{ marginBottom: '30px' }}>
           <h1 style={styles.title}>
-            The Maangerams <span style={{ color: '#333', fontWeight: 'normal' }}>organic   since 1990</span> 
+            Saviral <span style={{ color: '#333', fontWeight: 'normal' }}>organic   since 1990</span> 
           </h1>
           <div style={{ marginTop: '-20px', gap: '0px' }}>
-            <div style={styles.subtitle}>100% ORGANIC GUARANTEE</div>
+            <div style={styles.subtitle}>100% Fresh GUARANTEE</div>
             <h2 style={styles.mainHeading}>
               <span style={{ fontWeight: 'normal' }}>
                 WE DO <span style={{ fontWeight: 'bold' }}>HEALTHY</span>
@@ -130,7 +130,7 @@ const Comp5 = () => {
         </div>
 
         <p style={styles.paragraph}>
-        At Mangeram, we're passionate about providing you with the purest, most natural foods. That's why we've made a commitment to offering 100% organic products. Our dedication to organic farming practices ensures that our products are free from harmful synthetic pesticides, herbicides, and genetically modified organisms (GMOs).
+        At Saviral, we're passionate about providing you with the purest, most natural foods. That's why we've made a commitment to offering 100% Fresh products. Our dedication to organic farming practices ensures that our products are free from harmful synthetic pesticides, herbicides, and genetically modified organisms (GMOs).
         </p>
 
         <div style={styles.signatureSection}>
@@ -148,7 +148,7 @@ const Comp5 = () => {
           <img src="/images/spinach.png" alt="Organic Vegetables" style={styles.vegetablesImage} />
         </div>
 
-        <p style={styles.slogan}>Live Organic, Live Healthy</p>
+        <p style={styles.slogan}>Live Fresh, Live Healthy</p>
       </section>
     </div>
   );

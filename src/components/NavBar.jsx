@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logoImage from '/images/logo.png';
+import logoImage from '/images/logos.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +49,7 @@ const Navbar = () => {
               font-medium  text-black mt-0 text-left tracking-tight
             ${scrolled || !isHomePage ? 'text-sm md:text-base text-black' : 'text-base md:text-xl text-white'}
           `}>
-            The Maangerams
+            Saviral
           </span>
         </Link>
 

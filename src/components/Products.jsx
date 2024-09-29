@@ -93,8 +93,8 @@
                 ))}
               </div>
               <div className="flex flex-col items-center mx-16 -mb-6">
-                <img src="/images/products-head-fruit.png" alt="Fruits" className="w-auto h-20 object-cover rounded-lg mb-2" />
-                <img src="/images/product-organic.png" alt="Fruits" className="w-auto h-24 object-cover rounded-lg -mt-4" />
+                
+                <img src="/images/Navs.png" alt="Fruits" className="w-auto h-24 object-cover rounded-lg -mt-4" />
               </div>
               <div className="flex space-x-4">
                 {categories.slice(2).map((category) => (

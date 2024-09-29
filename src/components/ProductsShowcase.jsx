@@ -29,7 +29,7 @@ const ProductsShowcase = () => {
   return (
     <div className="bg-white px-4 sm:px-8 md:px-16 lg:px-24 py-12 mb-10 " id='popular-products'>
       <div className="flex flex-col items-center mb-8">
-        <img src="/images/feature.png" alt="Grapefruit" className="h-16 sm:h-20 mb-2" />
+        <img src="/images/bora.png" alt="Grapefruit" className="h-16 sm:h-20 mb-2" />
         <div className="text-sm text-green-600 text-center">
           <span className="text-green-500">★</span> a taste of <strong>real food</strong> <span className="text-green-500">★</span>
         </div>

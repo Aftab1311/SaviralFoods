@@ -4,9 +4,9 @@ const Comp1 = () => {
   const [hoverIndex, setHoverIndex] = useState(null);
 
   const products = [
-    { image: '/images/juce.png', title: 'fresh dairy', items: '6 items' },
-    { image: '/images/tamatar.png', title: 'fresh vegetables', items: '4 items' },
-    { image: '/images/straw.png', title: 'organic fruits', items: '5 items' },
+    { image: '/images/juce.png', title: 'Fresh Atta', items: '6 items' },
+    { image: '/images/tamatar.png', title: 'Basmati Rice', items: '4 items' },
+    { image: '/images/straw.png', title: 'Fresh Oil', items: '5 items' },
   ];
 
   return (
@@ -40,15 +40,15 @@ const Comp1 = () => {
       {/* Right Section */}
       <div className="flex-1 w-full text-left sm:text-left mt-8 md:mt-0 md:ml-8 max-w-xl  md:mx-0">
       <h2 className="text-gray-600 uppercase text-sm tracking-wider mb-2">
-  Fresh from our dairy farm
+  Fresh from our Store
 </h2>
 <h1 className="text-[40px] font-bold mb-[10px] mt-[10px]">
   <span className="font-normal">10+ </span>
-  <span className="font-bold">dairy products</span>
-  <span className="font-normal">, vegetables &</span> fruits
+  <span className="font-bold"></span>
+  <span className="font-normal">, Grocery &</span> items
 </h1>
 <p className="text-[#666] text-lg leading-[1.6] mt-4">
-At The Maangerams, we proudly offer an incredible selection of over 10+ varieties of fresh dairy products, along with a wide range of farm-fresh vegetables and fruits. Our commitment to quality ensures that our customers always have access to the best nature has to offer, from creamy yogurts and artisanal cheeses to crisp vegetables and juicy fruits.
+Welcome to Saviral, your go-to destination for wholesome ingredients! We specialize in high-quality atta (whole wheat flour) sourced from freshly milled grains, ensuring you get the best nutrition and flavor for your rotis and baked goods.
 </p>
       </div>
      </div>
