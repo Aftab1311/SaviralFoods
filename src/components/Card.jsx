@@ -1,11 +1,13 @@
 
 import { useNavigate } from 'react-router-dom';
 
+import { convertImageToBase64 } from '../utils';
+
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate(`/product/${product.id}`, { state: { product } });
+    navigate(`/product/${product.product_id}`, { state: { product } });
   };
 
  
@@ -16,7 +18,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="relative overflow-hidden group">
         <img 
-          src={product.imageSrc} 
+          src={convertImageToBase64(product.Image)} 
           alt={product.name} 
           className="w-full h-72 mb-2 object-center transition duration-300 ease-in-out group-hover:scale-105"
         />

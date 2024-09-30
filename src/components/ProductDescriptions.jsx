@@ -18,6 +18,8 @@ const ProductDescriptions = () => {
     }
   }, [id, navigate]);
 
+  console.log(product);
+
   if (!product) {
     return <div className="container mx-auto px-4 py-8 text-center">Loading...</div>;
   }
@@ -79,7 +81,7 @@ const ProductDescriptions = () => {
           <h1 className="text-3xl font-bold text-gray-800 mb-3">{product.name}</h1>
 
           <div className="flex items-center mb-4">
-            <p className="text-3xl font-bold text-green-600 mr-4">₹{(product.price * quantity).toFixed(2)}</p>
+            <p className="text-3xl font-bold text-green-600 mr-4">₹{(product.price).toFixed(2)}</p>
             {product.oldPrice && (
               <p className="text-xl text-gray-500 line-through">₹{(product.oldPrice * quantity).toFixed(2)}</p>
             )}
