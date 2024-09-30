@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
@@ -47,10 +47,10 @@ const ProductCard = ({ product }) => {
             className="bg-[#7fba00] text-white font-semibold py-2 px-4 rounded-full hover:bg-[#6ca300] transition duration-300 ease-in-out transform hover:scale-105"
             onClick={(e) => {
               e.preventDefault();
-              window.open(product.buyNowLink, '_blank');
+              // window.open(product.buyNowLink, '_blank');
             }}
           >
-            Buy Now
+            Check Product
           </button>
           <button 
             className="md:hidden border-2 border-[#7fba00] text-[#7fba00] font-semibold py-2 px-4 rounded-full hover:bg-[#7fba00] hover:text-white transition duration-300 ease-in-out transform hover:scale-105"

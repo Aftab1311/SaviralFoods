@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import  { useMemo } from 'react';
 import ProductCard from '/src/components/ProductCard';
 import { products } from '../data/products';
 
