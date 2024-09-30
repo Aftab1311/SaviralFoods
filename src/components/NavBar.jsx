@@ -1,6 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoImage from '/images/logos.png';
+import AuthContext from "./AuthContext"; // Import AuthContext
+import {  FaUserCircle } from "react-icons/fa";
+import {jwtDecode} from "jwt-decode"; // Correct import for jwtDecode
+import { MdDashboard } from "react-icons/md"; // Import dashboard icon
+import { CartContext } from "./CartContext"; // Import CartContext
+
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -8,6 +14,16 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navRef = useRef(null);
+  // const { openModal } = useModal(); // Use openModal from context
+  const { isAuthenticated, logout } = useContext(AuthContext); // Access isAuthenticated and logout
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState(""); // Store userEmail state
+  const dropdownRef = useRef(null);
+  // const { clearCart } = useContext(CartContext); // Access cartItems from context
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +49,34 @@ const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isHomePage]);
+
+  useEffect(() => {
+    // Retrieve the token from localStorage (or any storage where it's stored)
+    const token = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
+
+    // Decode the token to extract the email
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setUserEmail(decodedToken.email); // Store email in state
+    }
+
+    // console.log(userEmail);
+  }, [isAuthenticated]); // Re-run when `isAuthenticated` changes
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -83,6 +127,59 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+        <div className='flex gap-4 items-center'>
+         {/* Conditionally render Dashboard for admin */}
+         {isAuthenticated && userEmail === "admin@gmail.com" && (
+          <Link to="/admin/dashboard" className="text-[#6ca300] mx-4">
+            <MdDashboard size={30} />
+          </Link>
+        )}
+
+       
+        {/* Conditionally render Login or Logout */}
+        {isAuthenticated ? (
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={toggleDropdown}
+              className="flex items-center text-white focus:outline-none mr-2"
+            >
+              <FaUserCircle size={40} color="#6ca300" />
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
+                <a
+                  href="/profile-page"
+                  className="flex justify-center px-4 py-2 text-gray-800 hover:bg-gray-200"
+                >
+                  View Profile
+                </a>
+                <Link
+                  to="/login"
+                  className="flex justify-center px-4 py-2 text-xl text-gray-800 hover:bg-gray-200 bebas"
+                  onClick={() => {
+                    logout(); // Call logout function
+                    handleLinkClick("Logout");
+                    clearCart(); // Clear cart on logout
+                    
+                  }}
+                >
+                  Logout
+                </Link>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="px-7 py-2 rounded-full bg-[#6ca300] text-lg text-white font-black shadow-md shadow-[#0000005a] bebas tracking-wider"
+            onClick={() => handleLinkClick("Login")}
+          >
+            Login
+          </Link>
+        )}
+      </div>
+
       </div>
     </nav>
   );
