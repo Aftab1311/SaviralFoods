@@ -210,7 +210,7 @@ const AboutPage = () => {
         <div className='flex justify-center flex-col w-full items-center'>
       <div className="md:w-1/2 text-center md:text-left">
             <h1 className="text-2xl md:text-3xl lg:text-4xl mb-2 text-center">we are <span className="font-bold">organic  </span></h1>
-            <h3 className="text-sm md:text-base lg:text-lg text-center">----ABOUT The Saviral Foods  ----</h3>
+            <h3 className="text-sm md:text-base lg:text-lg text-center">----ABOUT Saviral Foods  ----</h3>
           </div>
         <div className="flex flex-col md:flex-row items-center justify-center mt-8 mb-8">
           <p className="text-base md:text-lg lg:text-lg mb-8 md:mb-0 md:w-1/2">

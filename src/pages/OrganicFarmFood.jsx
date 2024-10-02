@@ -2,7 +2,7 @@ import React from 'react';
 
 const Organic  = () => {
   const features = [
-    { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'The Saviral Foods ' },
+    { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'Saviral Foods ' },
     { icon: 'feature-2.png', title: '100%', boldTitle: 'organic dairy' },
     { icon: 'feature-3.png', title: 'premium', boldTitle: 'quality' },
     { icon: 'feature-4.png', title: '100%', boldTitle: 'natural' },
@@ -19,7 +19,7 @@ const Organic  = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#505050] mb-2">
           we are <span className="font-bold text-[#515153]">organic  </span>
         </h1>
-        <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT The Saviral Foods  ----</h3>
+        <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT Saviral Foods  ----</h3>
         <p className="text-base sm:text-lg text-[#7a7a7a] max-w-3xl mx-auto mb-12 lg:mb-24">
         Welcome to Saviral Foods, your go-to destination for wholesome ingredients! We specialize in high-quality atta (whole wheat flour) sourced from freshly milled grains, ensuring you get the best nutrition and flavor for your rotis and baked goods.
 </p>

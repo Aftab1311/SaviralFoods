@@ -23,7 +23,7 @@ const ContactPage = () => {
       <div className="bg-gray-100 py-12 md:py-16 mt-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col justify-start items-start">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">The Saviral Foods Shop</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Saviral Foods Shop</h1>
             <div className="text-sm flex text-gray-600 mb-8">
               <span>HOME</span>
               <span className="mx-2">/</span>
@@ -63,11 +63,11 @@ const ContactPage = () => {
 
           {/* Address details */}
           <div className="w-full md:w-1/3">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">The Saviral Foods Address</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Saviral Foods Address</h2>
             <p className="text-sm text-gray-600 mb-6">ORGANIC STORE</p>
 
             <div className="space-y-4 text-gray-700">
-              <p className="font-semibold text-green-600">The Saviral Foods STORE</p>
+              <p className="font-semibold text-green-600">Saviral Foods STORE</p>
               <p>Shop no. B-3, Bankey Bihari Sharnam, Rajnagar Extension, Ghaziabad
               </p>
 

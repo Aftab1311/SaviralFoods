@@ -8,7 +8,7 @@ const Footer = () => {
           <h3 className="text-xl sm:text-2xl font-semibold text-green-600">Saviral Foods <span className="font-normal text-gray-700"> </span></h3>
           <p className="uppercase text-xs sm:text-sm text-gray-500">ORGANIC STORE</p>
           <div className="w-12 h-0.5 bg-green-600"></div>
-          <p className="text-sm text-gray-600">Welcome to The Saviral Foods Store</p>
+          <p className="text-sm text-gray-600">Welcome to Saviral Foods Store</p>
           <div className="space-y-2 text-sm text-gray-600">
             <p className="flex items-center"><span className="material-icons mr-2 text-green-600 text-base sm:text-lg  fa-solid fa-location-dot"></span>Shop no. B-3, Bankey Bihari Sharnam, Rajnagar Extension, Ghaziabad
             </p>
@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 sm:mt-0">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">The Saviral Foods Information</h3>
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Saviral Foods Information</h3>
           <div className="w-12 h-0.5 bg-green-600 mb-4"></div>
           <ul className="space-y-2 text-sm text-gray-600">
             {[
@@ -41,7 +41,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm text-gray-700">
-        <p className="text-center sm:text-left mb-4 sm:mb-0">©2024 The Saviral Foods , made with <span className="text-red-500">❤️</span> by Campaigning Source, all right reserved</p>
+        <p className="text-center sm:text-left mb-4 sm:mb-0">©2024 Saviral Foods , made with <span className="text-red-500">❤️</span> by Campaigning Source, all right reserved</p>
       
       </div>
     </footer>

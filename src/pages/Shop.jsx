@@ -96,7 +96,7 @@ const Shop = () => {
       <section className="relative overflow-hidden bg-[#f0f4ed] py-10 px-4 md:py-16 md:px-10 mt-16 ">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl md:text-4xl text-gray-800 mb-2">
-            Shop <span className="font-bold text-black">The Saviral Foods</span>  
+            Shop <span className="font-bold text-black">Saviral Foods</span>  
           </h1>
           <div className="text-sm text-gray-600 max-sm:mt-7">
             <span>HOME / SHOP</span>
