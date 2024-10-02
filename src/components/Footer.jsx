@@ -8,7 +8,7 @@ const Footer = () => {
           <h3 className="text-xl sm:text-2xl font-semibold text-green-600">Saviral Foods <span className="font-normal text-gray-700"> </span></h3>
           <p className="uppercase text-xs sm:text-sm text-gray-500">ORGANIC STORE</p>
           <div className="w-12 h-0.5 bg-green-600"></div>
-          <p className="text-sm text-gray-600">Welcome To The Saviral Foods Store</p>
+          <p className="text-sm text-gray-600">Welcome to The Saviral Foods Store</p>
           <div className="space-y-2 text-sm text-gray-600">
             <p className="flex items-center"><span className="material-icons mr-2 text-green-600 text-base sm:text-lg  fa-solid fa-location-dot"></span>Shop no. B-3, Bankey Bihari Sharnam, Rajnagar Extension, Ghaziabad
             </p>
