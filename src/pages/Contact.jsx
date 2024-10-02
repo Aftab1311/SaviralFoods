@@ -14,16 +14,16 @@ const Contact = () => {
       <div className="bg-[#6ca300] w-[90%] mt-20 rounded-xl flex md:hidden shadow-2xl text-white flex-col gap-4 justify-center px-8 h-[250px] relative z-20" >
           <h2 className="text-2xl font-semibold">Contact Us</h2>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><MdLocationOn size={16} /></span> K-8 Niti Nagar, Sanjay Nagar <br /> Ghaziabad, Uttar Pradesh, India
+            <span className="mr-2"><MdLocationOn size={16} /></span>Shop no. B-3, Bankey Bihari Sharnam, <br/> Rajnagar Extension, Ghaziabad
           </p>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><IoMdMail size={16} /></span> lemanda1978@gmail.com
+            <span className="mr-2"><IoMdMail size={16} /></span> Saviral Foodsfoods@gmail.com
           </p>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><FaWebAwesome size={16} /></span> lemanda.in
+            <span className="mr-2"><FaWebAwesome size={16} /></span> Saviral FoodsFoods.in
           </p>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><FaPhone size={16} /></span> +91 {" "} 8920309557
+            <span className="mr-2"><FaPhone size={16} /></span> +91 {" "} 9971403821, +91 {" "} 9319545022
           </p>
           {/* <div className="flex gap-4">
             <a href="#" className="text-white hover:text-gray-300">
@@ -37,21 +37,21 @@ const Contact = () => {
             </a>
           </div> */}
         </div>
-      <div className="bg-white w-[95%] md:w-[45%] flex flex-col md:flex-row items-center  relative min-h-[500px] md:min-h-[600px] -top-1 " style={{ boxShadow: '0 -4px 10px rgba(0, 0, 0, 0.2)',boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)' }}>
+      <div className="bg-white w-[95%] md:w-[60%] flex flex-col md:flex-row items-center  relative min-h-[500px] md:min-h-[600px] -top-1 " style={{ boxShadow: '0 -4px 10px rgba(0, 0, 0, 0.2)',boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)' }}>
         {/* Contact Information Section */}
         <div className="bg-[#6ca300] hidden md:flex shadow-2xl text-white flex-col gap-8 justify-center px-8 h-[500px] absolute left-[-120px]" >
           <h2 className="text-4xl font-semibold my-4">Contact Us</h2>
           <p className="flex items-center">
-            <span className="mr-2"><MdLocationOn size={20} /></span> K-8 Niti Nagar, Sanjay Nagar <br /> Ghaziabad, Uttar Pradesh, India
+            <span className="mr-2"><MdLocationOn size={20} /></span>Shop no. B-3, Bankey Bihari <br/> Sharnam,  Rajnagar Extension,<br/> Ghaziabad
           </p>
           <p className="flex items-center">
-            <span className="mr-2"><IoMdMail size={20} /></span> lemanda1978@gmail.com
+            <span className="mr-2"><IoMdMail size={20} /></span> Saviral Foodsfoods@gmail.com
           </p>
           <p className="flex items-center">
-            <span className="mr-2"><FaWebAwesome size={20} /></span> lemanda.in
+            <span className="mr-2"><FaWebAwesome size={20} /></span> Saviral FoodsFoods.in
           </p>
           <p className="flex items-center">
-            <span className="mr-2"><FaPhone size={20} /></span> +91 {" "} 8920309557
+            <span className="mr-2"><FaPhone size={20} /></span>+91 {" "} 9971403821, +91 {" "} 9319545022
           </p>
           {/* <div className="flex gap-10 my-10">
             <a href="#" className="text-white hover:text-gray-300">

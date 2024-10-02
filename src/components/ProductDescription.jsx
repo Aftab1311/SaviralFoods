@@ -85,12 +85,12 @@ const ProductDescription = () => {
           <img
             src={convertImageToBase64(currentImage)}
             alt={product.name}
-            className="h-[30rem] w-full object-fill rounded-lg shadow-sm mb-4"
+            className=" h-[20rem] md:h-[30rem] w-full object-fill rounded-lg shadow-sm mb-4"
           />
           <div className="flex justify-between items-center mt-4">
             <button
               onClick={() => handleImageChange("prev")}
-              className="text-green-500 hover:text-green-600 transition-colors duration-300"
+              className="text-green-500 hover:text-green-600 text-[12px] md:text-base transition-colors duration-300"
             >
               ⇦ PREV
             </button>
@@ -100,7 +100,7 @@ const ProductDescription = () => {
                   key={index}
                   src={convertImageToBase64(img)}
                   alt={`${product.name} ${index + 1}`}
-                  className={`w-16 h-16 object-cover rounded-md border-2 ${
+                  className={`w-10 h-10 md:w-16 md:h-16 object-cover rounded-md border-2 ${
                     index === currentImageIndex
                       ? "border-green-500"
                       : "border-gray-300 hover:border-green-500"
@@ -111,7 +111,7 @@ const ProductDescription = () => {
             </div>
             <button
               onClick={() => handleImageChange("next")}
-              className="text-green-500 hover:text-green-600 transition-colors duration-300"
+              className="text-green-500 hover:text-green-600 text-[12px] md:text-base transition-colors duration-300"
             >
               NEXT ⇨
             </button>

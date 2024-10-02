@@ -44,7 +44,7 @@ export const products = [
     oldPrice: 0, // Please adjust the old price as needed
     quantity: "500 grams", // Please adjust the quantity as needed
     description: "Rich in monounsaturated fats and omega-3 fatty acids, mustard oil is believed to support heart health and boost metabolism. It contains compounds like erucic acid and glucosinolates, which may have anti-inflammatory and antioxidant properties.",
-    imageSrc: "/images/Saviral oil mustard.jpg", // Please ensure this image exists
+    imageSrc: "/images/Saviral Foods oil mustard.jpg", // Please ensure this image exists
     otherImages: [
       "",
       "",
@@ -267,9 +267,9 @@ export const products = [
     oldPrice: 0,
     quantity: "500 grams",
     description: "Rich in monounsaturated fats and omega-3 fatty acids, mustard oil is often associated with various health benefits, including promoting heart health and reducing inflammation. It also contains compounds like erucic acid and antioxidants, which can support overall wellness.",
-    imageSrc: "/images/Saviral oil mustard.jpg",
+    imageSrc: "/images/Saviral Foods oil mustard.jpg",
     otherImages: [
-      "/images/Saviral oil mustard.jpg",
+      "/images/Saviral Foods oil mustard.jpg",
     ],
     tags: ["farm-fresh", "vegetables"],
     onSale: true,

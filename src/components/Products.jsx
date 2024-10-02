@@ -143,7 +143,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 md:grid-cols-4">
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-10 md:px-10">
             {filteredProducts.map((product) => (
               <div key={product.product_id} className="w-full p-2">
                 <ProductCard product={product} />

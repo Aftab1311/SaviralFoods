@@ -48,7 +48,7 @@ const Comp1 = () => {
   <span className="font-normal">, Grocery &</span> items
 </h1>
 <p className="text-[#666] text-base md:text-lg leading-[1.6] mt-4 text-justify md:text-start">
-Welcome to Saviral, your go-to destination for wholesome ingredients! We specialize in high-quality atta (whole wheat flour) sourced from freshly milled grains, ensuring you get the best nutrition and flavor for your rotis and baked goods.
+Welcome to Saviral Foods, your go-to destination for wholesome ingredients! We specialize in high-quality atta (whole wheat flour) sourced from freshly milled grains, ensuring you get the best nutrition and flavor for your rotis and baked goods.
 </p>
       </div>
      </div>

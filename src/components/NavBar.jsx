@@ -94,7 +94,7 @@ const Navbar = () => {
               font-medium  text-black mt-0 text-left tracking-tight
             ${scrolled || !isHomePage ? 'text-sm md:text-base text-black hidden md:block' : 'text-base md:text-xl text-white hidden md:block'}
           `}>
-            Saviral
+            Saviral Foods
           </span>
         </Link>
 
