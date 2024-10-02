@@ -15,9 +15,9 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
   });
 
   const [mainImage, setMainImage] = useState(null);
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-  const [image3, setImage3] = useState(null);
+  // const [image1, setImage1] = useState(null);
+  // const [image2, setImage2] = useState(null);
+  // const [image3, setImage3] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -43,13 +43,14 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
     const { name, files } = e.target;
     if (name === "Image") {
       setMainImage(files[0]);
-    } else if (name === "Image1") {
-      setImage1(files[0]);
-    } else if (name === "Image2") {
-      setImage2(files[0]);
-    } else if (name === "Image3") {
-      setImage3(files[0]);
     }
+    // } else if (name === "Image1") {
+    //   setImage1(files[0]);
+    // } else if (name === "Image2") {
+    //   setImage2(files[0]);
+    // } else if (name === "Image3") {
+    //   setImage3(files[0]);
+    // }
   };
 
   const handleSubmit = async (e) => {
@@ -64,9 +65,9 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
     data.append("quantity", formData.quantity);
     data.append("countInStock", formData.countInStock);
     if (mainImage) data.append("Image", mainImage);
-    if (image1) data.append("Image1", image1);
-    if (image2) data.append("Image2", image2);
-    if (image3) data.append("Image3", image3);
+    // if (image1) data.append("Image1", image1);
+    // if (image2) data.append("Image2", image2);
+    // if (image3) data.append("Image3", image3);
 
     try {
       const res = await axios.put(
@@ -131,7 +132,7 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
               className="block w-full mt-1 border border-gray-300 p-2 rounded"
             />
           </label>
-          <label className="block mb-4">
+          {/* <label className="block mb-4">
             Image 1:
             <input
               type="file"
@@ -157,7 +158,7 @@ const ProductForm = ({ product, closePopup, refreshProducts }) => {
               onChange={handleFileChange}
               className="block w-full mt-1 border border-gray-300 p-2 rounded"
             />
-          </label>
+          </label> */}
           <label className="block mb-4">
             Description:
             <textarea

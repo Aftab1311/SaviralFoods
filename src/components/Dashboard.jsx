@@ -17,9 +17,9 @@ const Dashboard = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [formDataValues, setFormDataValues] = useState({});
   const [mainImage, setMainImage] = useState(null);
-  const [Image1, setImage1] = useState(null);
-  const [Image2, setImage2] = useState(null);
-  const [Image3, setImage3] = useState(null);
+  // const [Image1, setImage1] = useState(null);
+  // const [Image2, setImage2] = useState(null);
+  // const [Image3, setImage3] = useState(null);
   const [orders, setOrders] = useState([]);
 
   const [isGridVisible, setGridVisible] = useState(false);
@@ -86,15 +86,15 @@ const Dashboard = () => {
     if (e.target.name === "Image") {
       setMainImage(e.target.files[0]);
     }
-    if (e.target.name === "Image1") {
-      setImage1(e.target.files[0]);
-    }
-    if (e.target.name === "Image2") {
-      setImage2(e.target.files[0]);
-    }
-    if (e.target.name === "Image3") {
-      setImage3(e.target.files[0]);
-    }
+    // if (e.target.name === "Image1") {
+    //   setImage1(e.target.files[0]);
+    // }
+    // if (e.target.name === "Image2") {
+    //   setImage2(e.target.files[0]);
+    // }
+    // if (e.target.name === "Image3") {
+    //   setImage3(e.target.files[0]);
+    // }
   };
 
   const handleChange = (e) => {
@@ -115,9 +115,9 @@ const Dashboard = () => {
     formData.append("quantity", formDataValues.quantity);
     formData.append("countInStock", formDataValues.countInStock);
     if (mainImage) formData.append("Image", mainImage);
-    if (Image1) formData.append("Image1", Image1);
-    if (Image2) formData.append("Image2", Image2);
-    if (Image3) formData.append("Image3", Image3);
+    // if (Image1) formData.append("Image1", Image1);
+    // if (Image2) formData.append("Image2", Image2);
+    // if (Image3) formData.append("Image3", Image3);
 
     try {
       // Make a POST request to create the product
@@ -365,7 +365,7 @@ const Dashboard = () => {
                   </div>
 
                   {/* Additional Images */}
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="Image1"
                       className="block text-sm font-medium text-gray-700"
@@ -415,7 +415,7 @@ const Dashboard = () => {
                       required
                       className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     />
-                  </div>
+                  </div> */}
 
                   {/* Submit Button */}
                   <button

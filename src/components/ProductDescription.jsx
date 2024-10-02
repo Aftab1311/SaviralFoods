@@ -36,22 +36,22 @@ const ProductDescription = () => {
   // Create an array of image sources from the product object
   const imageSources = [
     product.Image,
-    product.Image1,
-    product.Image2,
-    product.Image3,
+    // product.Image1,
+    // product.Image2,
+    // product.Image3,
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const handleImageChange = (direction) => {
-    setCurrentImageIndex((prevIndex) => {
-      if (direction === "prev") {
-        return prevIndex === 0 ? imageSources.length - 1 : prevIndex - 1;
-      } else {
-        return prevIndex === imageSources.length - 1 ? 0 : prevIndex + 1;
-      }
-    });
-  };
+  // const handleImageChange = (direction) => {
+  //   setCurrentImageIndex((prevIndex) => {
+  //     if (direction === "prev") {
+  //       return prevIndex === 0 ? imageSources.length - 1 : prevIndex - 1;
+  //     } else {
+  //       return prevIndex === imageSources.length - 1 ? 0 : prevIndex + 1;
+  //     }
+  //   });
+  // };
 
-  const currentImage = imageSources[currentImageIndex];
+  // const currentImage = imageSources[currentImageIndex];
 
   if (!product) {
     return <p>Product not found</p>; // Handle case when product is not available
@@ -83,11 +83,11 @@ const ProductDescription = () => {
         {/* Product Image and Gallery */}
         <div className="md:w-1/2 lg:w-1/3 mb-6 md:mb-0">
           <img
-            src={convertImageToBase64(currentImage)}
+            src={convertImageToBase64(product.Image)}
             alt={product.name}
             className=" h-[20rem] md:h-[30rem] w-full object-fill rounded-lg shadow-sm mb-4"
           />
-          <div className="flex justify-between items-center mt-4">
+          {/* <div className="flex justify-between items-center mt-4">
             <button
               onClick={() => handleImageChange("prev")}
               className="text-green-500 hover:text-green-600 text-[12px] md:text-base transition-colors duration-300"
@@ -115,7 +115,7 @@ const ProductDescription = () => {
             >
               NEXT ⇨
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Product Details */}
