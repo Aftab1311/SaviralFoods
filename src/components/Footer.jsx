@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="space-y-2 text-sm text-gray-600">
             <p className="flex items-center"><span className="material-icons mr-2 text-green-600 text-base sm:text-lg  fa-solid fa-location-dot"></span>Shop no. B-3, Bankey Bihari Sharnam, Rajnagar Extension, Ghaziabad
             </p>
-            <p className="flex items-center"><span className="material-icons mr-2 text-green-600 text-base sm:text-lg fa-solid fa-envelope"></span>Saviral Foodsfoods@gmail.com</p>
+            <p className="flex items-center"><span className="material-icons mr-2 text-green-600 text-base sm:text-lg fa-solid fa-envelope"></span>saviralfoods@gmail.com</p>
             <p><span className="font-semibold fa-solid fa-phone material-icons mr-2 text-green-600 text-base sm:text-lg"></span> 9971403821, 9319545022 (Customer Care) </p>
           </div>
         </div>
