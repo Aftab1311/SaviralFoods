@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative h-[560px] md:min-h-screen flex items-center justify-center flex-col p-4">
+    <div className="relative h-[560px] md:min-h-screen flex items-center justify-center flex-col p-4 mb-10">
       <div 
          className="absolute inset-0 bg-cover bg-center w-full h-screen"
          style={{ backgroundImage: "url('/images/heros.png')", backgroundSize: "cover", backgroundPosition: "center" }}
