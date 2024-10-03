@@ -51,7 +51,9 @@ const Organic  = () => {
         </div>
 
       </div>
-      <img src="/images/bora.png" alt="Organic Grapefruit" className="mx-auto mt-16 -mb-72 z-[100]" />
+      <div className='w-full h-full'>
+      <img src="/images/bora.png" alt="Organic Grapefruit" className="mx-auto mt-16 -mb-20 md:-mb-72 z-[100]" />
+      </div>
     </div>
   );
 };

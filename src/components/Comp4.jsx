@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Ensure axios is imported
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Ensure axios is imported
 import { CartContext } from "./CartContext";
-import { convertImageToBase64 } from '../utils';
-
-
+import { convertImageToBase64 } from "../utils";
 
 const ProductCard = ({ product }) => {
   const backend = import.meta.env.VITE_BACKEND_URL;
-  ; 
   // Replace with your actual backend URL
 
   const { addToCart } = useContext(CartContext);
@@ -25,25 +22,37 @@ const ProductCard = ({ product }) => {
   // };
 
   return (
-    <div className="w-64 h-auto p-4 bg-white m-2 rounded-lg shadow-md flex flex-col justify-between cursor-pointer transition-transform duration-300 hover:scale-105" id="offers" >
+    <div
+      className="w-64 h-auto p-4 bg-white m-2 rounded-lg shadow-md flex flex-col justify-between cursor-pointer transition-transform duration-300 hover:scale-105"
+      id="offers"
+    >
       <div>
         {/* <div className="flex gap-2 mb-2">
           <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs">NEW</span>
           <span className="bg-cyan-500 text-white px-3 py-1 rounded-full text-xs">SALE</span>
         </div> */}
-        <img src={convertImageToBase64(product.Image)} alt={product.name} className="w-full h-44 object-center mb-4 rounded-md" />
+        <img
+          src={convertImageToBase64(product.Image)}
+          alt={product.name}
+          className="w-full h-44 object-center mb-4 rounded-md"
+        />
         <div className="text-center">
-          <div className="text-xs text-gray-600 uppercase tracking-wide mb-1">Fresh Atta</div>
-          <div className="text-lg font-bold text-gray-800 mb-2 capitalize">fresh {product.name}</div>
+          <div className="text-xs text-gray-600 uppercase tracking-wide mb-1">
+            Fresh Atta
+          </div>
+          <div className="text-lg font-bold text-gray-800 mb-2 capitalize">
+            fresh {product.name}
+          </div>
         </div>
       </div>
       <div>
-      <div className="flex justify-center items-center gap-2 mb-3">
+        <div className="flex justify-center items-center gap-2 mb-3">
           <span className="text-lg font-bold text-green-500">
             ₹{(product.price !== undefined ? product.price : 0).toFixed(2)}
           </span>
           <span className="text-sm line-through text-gray-400">
-            ₹{(product.oldPrice !== undefined ? product.oldPrice : 0).toFixed(2)}
+            ₹
+            {(product.oldPrice !== undefined ? product.oldPrice : 0).toFixed(2)}
           </span>
         </div>
         <button
@@ -84,7 +93,9 @@ const Comp4 = () => {
       .then((response) => {
         const products = response.data; // Adjust based on your actual API response format
         setProducts(products);
-        setCategories([...new Set(products.map((product) => product.category))]);
+        setCategories([
+          ...new Set(products.map((product) => product.category)),
+        ]);
         setLoading(false);
       })
       .catch((err) => {
@@ -121,51 +132,29 @@ const Comp4 = () => {
     <div className="mt-12">
       <style>
         {`
-          @keyframes scrolling {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(calc(-280px * ${products.length}));
-            }
-          }
-          .scrolling-container {
+           .scrolling-container {
             display: flex;
-            width: fit-content;
-          }
-          .scrolling-container > div {
-            flex: 0 0 auto;
-          }
-          @media (max-width: 768px) {
-            @keyframes scrolling-mobile {
-              0%, 25% {
-                transform: translateX(0);
-              }
-              33%, 58% {
-                transform: translateX(-100%);
-              }
-              66%, 91% {
-                transform: translateX(-200%);
-              }
-              100% {
-                transform: translateX(-300%);
-              }
-            }
-            .scrolling-container {
-              animation: scrolling-mobile 12s linear infinite !important;
-            }
-          }
+            flex-direction: row;
+            gap: 2rem;
+            padding: 1rem;;
+           overflow-x: auto; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+        }
+          
         `}
       </style>
 
-      <h2 className="text-center text-4xl text-zinc-800 font-thin mb-10">Exclusive <span className="text-[#4e8734] font-bold">Sale</span></h2>
+      <h2 className="text-center text-4xl text-zinc-800 font-thin mb-10">
+        Exclusive <span className="text-[#4e8734] font-bold">Sale</span>
+      </h2>
 
       <div ref={cardsRef} className="overflow-hidden relative mx-auto">
         <div
           className="scrolling-container py-4 gap-0 md:gap-10"
-          style={{
-            animation: startAnimation ? `scrolling ${products.length * 12}s linear infinite` : 'none',
-          }}
+          // style={{
+          //   animation: startAnimation ? `scrolling ${products.length * 12}s linear infinite` : 'none',
+          // }}
         >
           {products.map((product, index) => (
             <div key={index} className="w-[100%] md:w-auto">
