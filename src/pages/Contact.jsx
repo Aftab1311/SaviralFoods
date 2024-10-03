@@ -17,10 +17,10 @@ const Contact = () => {
             <span className="mr-2"><MdLocationOn size={16} /></span>Shop no. B-3, Bankey Bihari Sharnam, <br/> Rajnagar Extension, Ghaziabad
           </p>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><IoMdMail size={16} /></span> Saviral Foodsfoods@gmail.com
+            <span className="mr-2"><IoMdMail size={16} /></span> saviralfoods@gmail.com
           </p>
           <p className="flex items-center text-sm">
-            <span className="mr-2"><FaWebAwesome size={16} /></span> Saviral FoodsFoods.in
+            <span className="mr-2"><FaWebAwesome size={16} /></span> SaviralFoods.in
           </p>
           <p className="flex items-center text-sm">
             <span className="mr-2"><FaPhone size={16} /></span> +91 {" "} 9971403821, +91 {" "} 9319545022
@@ -45,10 +45,10 @@ const Contact = () => {
             <span className="mr-2"><MdLocationOn size={20} /></span>Shop no. B-3, Bankey Bihari <br/> Sharnam,  Rajnagar Extension,<br/> Ghaziabad
           </p>
           <p className="flex items-center">
-            <span className="mr-2"><IoMdMail size={20} /></span> Saviral Foodsfoods@gmail.com
+            <span className="mr-2"><IoMdMail size={20} /></span> saviralfoods@gmail.com
           </p>
           <p className="flex items-center">
-            <span className="mr-2"><FaWebAwesome size={20} /></span> Saviral FoodsFoods.in
+            <span className="mr-2"><FaWebAwesome size={20} /></span> SaviralFoods.in
           </p>
           <p className="flex items-center">
             <span className="mr-2"><FaPhone size={20} /></span>+91 {" "} 9971403821, +91 {" "} 9319545022
