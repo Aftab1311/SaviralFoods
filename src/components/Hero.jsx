@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative h-[560px] md:min-h-screen flex items-center justify-center flex-col p-4 mb-20 md:mb-10">
+    <div className="relative h-[560px] md:min-h-screen flex items-center justify-center flex-col p-4 pt-40 md:mt-0 mb-36 md:mb-10">
       <div 
-         className="absolute inset-0 bg-cover bg-center w-full h-screen"
+         className="absolute inset-0 bg-cover bg-center w-full h-[820px]"
          style={{ backgroundImage: "url('/images/heros.png')", backgroundSize: "cover", backgroundPosition: "center" }}
       ></div>
-      <div  className="absolute inset-0 bg-black opacity-60"></div>
+      <div  className="absolute inset-0 bg-black opacity-60 h-[660px] md:h-[820px]"></div>
       <div className="relative text-center text-white px-4 flex justify-center items-center flex-col max-w-4xl mx-auto">
         
         <h1 className="text-5xl  lg:text-7xl font-extralight tracking-tight mb-2 sm:mb-4">
