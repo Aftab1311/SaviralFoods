@@ -2,14 +2,12 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 
-
 const Login = () => {
-
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
+    identifier: "", // Can be either email or phone
     password: "",
   });
   const [message, setMessage] = useState("");
@@ -21,9 +19,24 @@ const Login = () => {
     });
   };
 
+  const isValidEmail = (identifier) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(identifier);
+  };
+
+  const isValidPhone = (identifier) => {
+    const phoneRegex = /^\d{10}$/; // Assuming a valid phone number is 10 digits long
+    return phoneRegex.test(identifier);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+    const { identifier, password } = formData;
+
+    if (!isValidEmail(identifier) && !isValidPhone(identifier)) {
+      setMessage("Please enter a valid email or phone number.");
+      return;
+    }
 
     try {
       const response = await fetch(`${backend}/api/v1/users/login`, {
@@ -31,7 +44,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ identifier, password }), // Identifier can be either email or phone
       });
 
       const result = await response.json();
@@ -39,14 +52,12 @@ const Login = () => {
       if (response.ok) {
         setMessage(result.message);
         login(result.token);
-        // You can store the JWT token in localStorage or cookies if needed
         navigate("/");
       } else {
         setMessage(result.error);
       }
     } catch (error) {
       setMessage("An error occurred. Please try again.");
-      // console.log(error);
     }
   };
 
@@ -58,13 +69,13 @@ const Login = () => {
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-gray-700">
-              Email:
+            <label htmlFor="identifier" className="block text-gray-700">
+              Email or Phone:
             </label>
             <input
-              type="email"
-              id="email"
-              value={formData.email}
+              type="text"
+              id="identifier"
+              value={formData.identifier}
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#347746] focus:border-transparent"

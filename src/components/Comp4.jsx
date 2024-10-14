@@ -5,7 +5,7 @@ import { CartContext } from "./CartContext";
 import { convertImageToBase64 } from "../utils";
 
 const ProductCard = ({ product }) => {
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
   // Replace with your actual backend URL
 
   const { addToCart } = useContext(CartContext);
@@ -43,6 +43,7 @@ const ProductCard = ({ product }) => {
           <div className="text-lg font-bold text-gray-800 mb-2 capitalize">
             {product.name}
           </div>
+          <span>Quantity : {product.quantity}</span>
         </div>
       </div>
       <div>
@@ -54,6 +55,7 @@ const ProductCard = ({ product }) => {
             ₹
             {(product.oldPrice !== undefined ? product.oldPrice : 0).toFixed(2)}
           </span>
+         
         </div>
         <button
           className="w-full bg-green-500 text-white py-2 px-4 rounded-md text-sm font-semibold transition-colors duration-300 hover:bg-green-600"
@@ -83,7 +85,7 @@ const Comp4 = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const cardsRef = useRef(null);
 
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
   // Replace with your actual backend URL
 
   useEffect(() => {

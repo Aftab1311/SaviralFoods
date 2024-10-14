@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 
 const Checkout = () => {
 
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {

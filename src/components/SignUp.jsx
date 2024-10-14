@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate = useNavigate();
 
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -13,6 +13,7 @@ const Signup = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleChange = (e) => {
     setFormData({
@@ -25,6 +26,15 @@ const Signup = () => {
     e.preventDefault();
     const { name, email, phone, password } = formData;
 
+    // Basic phone validation
+    const phoneRegex = /^[0-9]{10}$/; // Adjust this regex based on your needs
+    if (!phoneRegex.test(phone)) {
+      setMessage("Invalid phone number. Please enter a valid 10-digit number.");
+      return;
+    }
+
+    setLoading(true); // Start loading
+
     try {
       const response = await fetch(`${backend}/api/v1/users/signup`, {
         method: "POST",
@@ -36,16 +46,20 @@ const Signup = () => {
 
       const result = await response.json();
 
-      console.log("hello");
       if (response.ok) {
         setMessage(result.message);
-        navigate("/login");
+        setFormData({ name: "", email: "", phone: "", password: "" }); // Reset form after successful submission
+        setTimeout(() => {
+          navigate("/login"); // Redirect after a short delay
+        }, 2000); // 2-second delay before redirect
       } else {
-        setMessage(result.error);
+        setMessage(result.error || "An error occurred. Please try again.");
       }
     } catch (error) {
-      setMessage("An error occurred. Please try again.");
-      console.log(error);
+      setMessage("Network error. Please check your connection and try again.");
+      console.error(error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -115,8 +129,9 @@ const Signup = () => {
           <button
             type="submit"
             className="w-full bg-[#6ca300] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#347746] transition duration-300"
+            disabled={loading} // Disable button while loading
           >
-            Signup
+            {loading ? "Signing up..." : "Signup"} {/* Show loading text */}
           </button>
 
           <h1 className="text-center mt-4">

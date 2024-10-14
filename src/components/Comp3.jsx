@@ -41,7 +41,7 @@ Don't miss out on Saviral Foods' Grocery Deal of the Day, where you can enjoy un
 </p>
                     </div>
                     <div className="md:w-1/2 flex justify-center">
-                        <img src="/images/deal.png" alt="Organic Tomatoes" className="w-40 sm:w-48 lg:w-56" />
+                        <img src="/images/deal.png" alt="Fresh Tomatoes" className="w-40 sm:w-48 lg:w-56" />
                     </div>
                 </div>
 

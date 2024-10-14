@@ -44,7 +44,7 @@ const Organic  = () => {
               <div key={index} className="text-center">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center" style={{backgroundImage: `url('/images/${feature.icon}')`}}></div>
                 <h4 className="text-lg text-[#652f2f] mb-2">{feature.title} <span className="font-bold text-black">{feature.boldTitle}</span></h4>
-                <p className="text-sm text-[#7a7a7a]"> We source our ingredients from trusted organic farmers who share our passion for sustainable agriculture.</p>
+                <p className="text-sm text-[#7a7a7a]"> We source our ingredients from trusted Natural farmers who share our passion for sustainable agriculture.</p>
               </div>
             ))}
           </div>

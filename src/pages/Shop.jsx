@@ -15,7 +15,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
 
-  const backend = import.meta.env.VITE_BACKEND_URL; // Backend URL
+  const backend =  import.meta.env.VITE_BACKEND_URL ; // Backend URL
 
   useEffect(() => {
     // Fetch products from the API
@@ -146,7 +146,7 @@ const Shop = () => {
           <div className="w-full md:w-[20%]">
             <img
               src="/images/logo-2.png"
-              alt="Organic Fresh Food"
+              alt=" Fresh Food"
               className="rounded-full p-2 w-32 h-32 mx-auto mt-0"
             />
           </div>

@@ -10,7 +10,7 @@ export const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backend = import.meta.env.VITE_BACKEND_URL;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
 
   useEffect(() => {
     // Fetch products from the API
@@ -76,7 +76,7 @@ export const Products = () => {
         <div className="md:hidden text-center mb-10">
           <div className="flex flex-col items-center mb-6">
             <img src="/images/products-head-fruit.png" alt="Fruits" className="w-auto h-16 object-cover rounded-lg mb-4" />
-            <img src="/images/product-organic.png" alt="Organic" className="w-auto h-20 object-cover rounded-lg mb-6" />
+            <img src="/images/product-organic.png" alt="Fresh" className="w-auto h-20 object-cover rounded-lg mb-6" />
             
             <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
               <button

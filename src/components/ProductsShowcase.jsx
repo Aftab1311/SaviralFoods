@@ -38,7 +38,7 @@ const ProductsShowcase = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="mb-8 sm:mb-0">
             <h2 className="text-xs tracking-[0.25rem] text-zinc-600 mb-1">NEW FROM THE FARM</h2>
-            <h3 className="text-2xl font-light mb-6 text-zinc-700">organic <span className="font-bold">new arrivals</span></h3>
+            <h3 className="text-2xl font-light mb-6 text-zinc-700">Fresh <span className="font-bold">new arrivals</span></h3>
             <div className="space-y-4">
               {showcaseProducts.newArrivals.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -47,7 +47,7 @@ const ProductsShowcase = () => {
           </div>
           <div className="mb-8 sm:mb-0">
             <h2 className="text-xs tracking-[0.25rem] text-zinc-600 mb-1">BEST SELLER</h2>
-            <h3 className="text-2xl font-light mb-6 text-zinc-700">organic <span className="font-bold">popular</span></h3>
+            <h3 className="text-2xl font-light mb-6 text-zinc-700">Fresh <span className="font-bold">popular</span></h3>
             <div className="space-y-4">
               {showcaseProducts.bestSellers.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -56,7 +56,7 @@ const ProductsShowcase = () => {
           </div>
           <div className="mb-8 sm:mb-0">
             <h2 className="text-xs tracking-[0.25rem] text-zinc-600 mb-1">CUSTOMER NEEDS</h2>
-            <h3 className="text-2xl font-light mb-6 text-zinc-700">organic <span className="font-bold">random</span></h3>
+            <h3 className="text-2xl font-light mb-6 text-zinc-700">Natural <span className="font-bold">random</span></h3>
             <div className="space-y-4">
               {showcaseProducts.randomProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
