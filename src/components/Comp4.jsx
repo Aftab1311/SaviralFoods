@@ -5,7 +5,7 @@ import { CartContext } from "./CartContext";
 import { convertImageToBase64 } from "../utils";
 
 const ProductCard = ({ product }) => {
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend =  "http://localhost:8000" ;
   // Replace with your actual backend URL
 
   const { addToCart } = useContext(CartContext);
@@ -85,7 +85,7 @@ const Comp4 = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const cardsRef = useRef(null);
 
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend =  "http://localhost:8000" ;
   // Replace with your actual backend URL
 
   useEffect(() => {

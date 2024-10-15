@@ -147,27 +147,38 @@ const Navbar = () => {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
-                <a
-                  href="/profile-page"
-                  className="flex justify-center text-lg px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >
-                  View Profile
-                </a>
-                <Link
-                  to="/login"
-                  className="flex justify-center px-4 py-2 text-lg text-gray-800 hover:bg-gray-200 bebas"
-                  onClick={() => {
-                    logout(); // Call logout function
-                    handleLinkClick("Logout");
-                    clearCart(); // Clear cart on logout
-                    
-                  }}
-                >
-                  Logout
-                </Link>
-              </div>
-            )}
+  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
+    <a
+      href="/profile-page"
+      className="flex justify-center text-lg px-4 py-2 text-gray-800 hover:bg-gray-200"
+    >
+      View Profile
+    </a>
+    
+    {userEmail === "admin@gmail.com" && ( // Check if user is admin
+      <Link
+        to="/allorders" // Adjust the path as needed
+        className="flex justify-center px-4 py-2 text-lg text-gray-800 hover:bg-gray-200"
+        onClick={() => handleLinkClick("All Orders")}
+      >
+        All Orders
+      </Link>
+    )}
+
+    <Link
+      to="/login"
+      className="flex justify-center px-4 py-2 text-lg text-gray-800 hover:bg-gray-200 bebas"
+      onClick={() => {
+        logout(); // Call logout function
+        handleLinkClick("Logout");
+        clearCart(); // Clear cart on logout
+      }}
+    >
+      Logout
+    </Link>
+  </div>
+)}
+
           </div>
         ) : (
           <Link

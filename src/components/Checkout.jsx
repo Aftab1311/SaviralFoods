@@ -5,31 +5,30 @@ import AuthContext from "./AuthContext";
 import Footer from "./Footer";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
-
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend = "http://localhost:8000";
+  const location = useLocation();
+  const { mainPrice, discountPercentage } = location.state || {};
   const [userData, setUserData] = useState(null);
-
+  
   useEffect(() => {
     // Get JWT token from local storage
     const token = localStorage.getItem('authToken');
-    // console.log(token);
-    
+
     if (token) {
       try {
         // Decode the token to get the user data
         const decodedToken = jwtDecode(token);
-        // console.log(decodedToken);
         setUserData(decodedToken);
-        // console.log(userData);
       } catch (error) {
         console.error('Invalid token:', error);
       }
     }
   }, []);
 
-  const { cartItems,  clearCart, getCartTotal } = useContext(CartContext)
+  const { cartItems, clearCart, getCartTotal } = useContext(CartContext);
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
@@ -46,26 +45,23 @@ const Checkout = () => {
     setShippingInfo({ ...shippingInfo, [name]: value });
   };
 
- 
- 
-
   // Function to handle checkout submission
   const handleCheckout = async (e) => {
     e.preventDefault();
-  
+
     if (!isAuthenticated) {
       alert("Please sign in to complete your purchase.");
       navigate("/login");
       return;
     }
-  
+
     // Validate shipping info
     const { name, address, city, postalCode } = shippingInfo;
     if (!name || !address || !city || !postalCode) {
       setError("Please fill out all shipping information.");
       return;
     }
-  
+
     const orderDetails = {
       userId: userData.email,  // Replace with the actual user ID
       cartItems: cartItems.map(item => ({
@@ -74,15 +70,15 @@ const Checkout = () => {
         price: item.price
       })),
       shippingInfo,
-      totalPrice: getCartTotal() * 0.9,  // Calculate the total price after discount
+      totalPrice: mainPrice,
+      discount: discountPercentage,
     };
-  
+
     try {
       // Make a POST request to create the order
       const response = await axios.post(`${backend}/api/v1/orders`, orderDetails);
       alert("Order placed successfully:");
-      // console.log("Order placed successfully:", response.data);
-  
+
       // Clear the cart and navigate to the payment confirmation page
       clearCart();
       navigate("/");
@@ -92,6 +88,8 @@ const Checkout = () => {
     }
   };
 
+  // Calculate total price after discount
+  const totalPrice = getCartTotal() * (1 - (discountPercentage / 100));
 
   return (
     <div className="checkout w-full pt-16 bg-[#F5F5F5]">
@@ -149,35 +147,9 @@ const Checkout = () => {
                   placeholder="123456"
                 />
               </div>
-              {/* <div className="mb-4">
-                <h2 className="text-xl font-medium mb-2">Payment Method</h2>
-                <div className="flex gap-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      value="creditCard"
-                      checked={paymentMethod === "creditCard"}
-                      onChange={handlePaymentChange}
-                      className="mr-2"
-                    />
-                    Credit Card
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      value="paypal"
-                      checked={paymentMethod === "paypal"}
-                      onChange={handlePaymentChange}
-                      className="mr-2"
-                    />
-                    PayPal
-                  </label>
-                </div>
-              </div> */}
               {error && <p className="text-red-600 mb-4">{error}</p>}
               <button
                 type="submit"
-
                 className="w-full py-3 rounded-full text-[#fff] font-medium bg-[#6ca300] hover:bg-[#347746] cursor-pointer"
               >
                 Confirm & Pay
@@ -186,7 +158,7 @@ const Checkout = () => {
           </div>
 
           {/* Order Summary Section */}
-          <div className="order-summary w-full md:w-[30%]  h-auto min-h-[300px] p-5 bg-white border border-[#dadada] rounded-xl">
+          <div className="order-summary w-full md:w-[30%] h-auto min-h-[300px] p-5 bg-white border border-[#dadada] rounded-xl">
             <h2 className="text-xl font-medium mb-4">Order Summary</h2>
             <div className="flex flex-col gap-4">
               {cartItems.map((item) => (
@@ -200,14 +172,14 @@ const Checkout = () => {
                 <span>₹{getCartTotal().toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold mt-2">
-                <span>Discount (10%)</span>
+                <span>Discount ({discountPercentage}%)</span>
                 <span className="text-green-500">
-                  ₹{(getCartTotal() * 0.1).toFixed(2)}
+                  ₹{(getCartTotal() * (discountPercentage / 100)).toFixed(2)}
                 </span>
               </div>
               <div className="flex justify-between font-bold mt-2">
                 <span>Grand Total</span>
-                <span>₹{(getCartTotal() * 0.9).toFixed(2)}</span>
+                <span>₹{totalPrice.toFixed(2)}</span>
               </div>
             </div>
           </div>

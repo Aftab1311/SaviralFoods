@@ -3,7 +3,7 @@ import axios from "axios";
 
 const ProductForm = ({ product, closePopup, refreshProducts }) => {
 
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend =  "http://localhost:8000" ;
   const [formData, setFormData] = useState({
     name: product ? product.name : "",
     product_id: product ? product.product_id : "",

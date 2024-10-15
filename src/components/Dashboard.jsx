@@ -9,7 +9,7 @@ import ProductForm from "./ProductForm";
 
 const Dashboard = () => {
 
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend =  "http://localhost:8000" ;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,6 +17,10 @@ const Dashboard = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [formDataValues, setFormDataValues] = useState({});
   const [mainImage, setMainImage] = useState(null);
+  const [code, setCode] = useState('');
+  const [discountPercentage, setDiscountPercentage] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [coupons, setCoupons] = useState([]);
   // const [Image1, setImage1] = useState(null);
   // const [Image2, setImage2] = useState(null);
   // const [Image3, setImage3] = useState(null);
@@ -148,27 +152,66 @@ const Dashboard = () => {
       // Optionally display an error message to the user
     }
   };
+  const handleCreateCoupon = async (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    // Fetch orders when the component loads
-    const fetchOrders = async () => {
-        try {
-            const response = await axios.get(`${backend}/api/v1/orders`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Assuming you're using a token
-                },
-            });
+    const couponData = { code, discountPercentage, expiryDate };
 
-            // Set all the orders without filtering by user email
-            setOrders(response.data);
-        } catch (err) {
-            console.error('Error fetching orders:', err);
-            setError('Failed to load orders');
-        }
+    console.log('Creating coupon:', couponData);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/v1/coupons/create-coupon", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(couponData),
+      });
+
+      console.log('Coupon response:', response);
+
+      const data = await response.json();
+      if (response.status === 201) {
+        alert('Coupon created successfully');
+        // Reset the form
+        setCode('');
+        setDiscountPercentage('');
+        setExpiryDate('');
+        fetchCoupons(); // Fetch updated coupons list
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error('Error creating coupon:', error);
+    }
+  };
+
+  // Function to fetch existing coupons
+  const fetchCoupons = async () => {
+    try {
+      const response = await fetch(`${backend}/api/v1/coupons/get-coupons`);
+      const data = await response.json();
+      setCoupons(data.coupons);
+    } catch (error) {
+      console.error('Error fetching coupons:', error);
+    }
+  };
+ 
+  const getCouponStatus = (expiryDate) => {
+    const today = new Date();
+    const expiry = new Date(expiryDate);
+    return {
+      status: expiry >= today ? "Active" : "Expired",
+      className: expiry >= today ? "text-green-500" : "text-red-500",
     };
+  };
 
-    fetchOrders();
-}, []);
+  // Fetch coupons when component loads
+  useEffect(() => {
+    fetchCoupons();
+  }, []);
+
+ 
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -510,45 +553,80 @@ const Dashboard = () => {
       )}
     </div>
     <div>
-    <div className="w-full px-5 py-10 bg-white">
-            <h1 className="text-3xl font-bold mb-6 flex justify-center">Order History</h1>
-            {orders.length > 0 ? (
-                <table className="min-w-full table-auto border-collapse">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="border px-4 py-2">Order ID</th>
-                            <th className="border px-4 py-2">User</th>
-                            <th className="border px-4 py-2">Items</th>
-                            <th className="border px-4 py-2">Total Price</th>
-                            <th className="border px-4 py-2">Status</th>
-                            <th className="border px-4 py-2">Created At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order) => (
-                            <tr key={order._id} className="hover:bg-gray-100 text-center">
-                                <td className="border px-4 py-2">{order._id}</td>
-                                <td className="border px-4 py-2">{order.user}</td>
-                                <td className="border px-4 py-2">
-                                    {order.items.map((item, index) => (
-                                        <div key={index}>
-                                            {item.name} (x{item.quantity}) - ₹{item.price}
-                                        </div>
-                                    ))}
-                                </td>
-                                <td className="border px-4 py-2">₹{order.totalPrice}</td>
-                                <td className="border px-4 py-2">{order.status}</td>
-                                <td className="border px-4 py-2">
-                                    {new Date(order.createdAt).toLocaleString()}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <p className="w-full flex justify-center text-2xl font-bold my-10 text-[#592d1e]" >No orders found for this user.</p>
-            )}
+   
+    </div>
+    <div className="admin-dashboard max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <h1 className="text-2xl font-bold mb-6">Admin Dashboard - Coupon Management</h1>
+
+      {/* Create Coupon Form */}
+      <form onSubmit={handleCreateCoupon} className="mb-6 p-4 border rounded-lg shadow-sm">
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-1">Coupon Code:</label>
+          <input
+            type="text"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            required
+            className="w-full border rounded-lg p-2"
+          />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-1">Discount Percentage:</label>
+          <input
+            type="number"
+            value={discountPercentage}
+            onChange={(e) => setDiscountPercentage(e.target.value)}
+            required
+            className="w-full border rounded-lg p-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-1">Expiry Date:</label>
+          <input
+            type="date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
+            required
+            className="w-full border rounded-lg p-2"
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+        >
+          Create Coupon
+        </button>
+      </form>
+
+      {/* Display Existing Coupons */}
+      <h2 className="text-xl font-bold mb-4">Existing Coupons</h2>
+      <table className="min-w-full border-collapse border border-gray-200">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="border border-gray-300 px-4 py-2">Code</th>
+            <th className="border border-gray-300 px-4 py-2">Discount %</th>
+            <th className="border border-gray-300 px-4 py-2">Expiry Date</th>
+            <th className="border border-gray-300 px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {coupons.map((coupon) => {
+            const { status, className } = getCouponStatus(coupon.expiryDate);
+            return (
+              <tr key={coupon._id} className="border-b hover:bg-gray-50 text-center">
+                <td className="border border-gray-300 px-4 py-2">{coupon.code}</td>
+                <td className="border border-gray-300 px-4 py-2">{coupon.discountPercentage}</td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {new Date(coupon.expiryDate).toLocaleDateString()}
+                </td>
+                <td className={`border border-gray-300 px-4 py-2 ${className}`}>
+                  {status}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
     </div>
   );
