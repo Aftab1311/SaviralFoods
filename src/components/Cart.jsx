@@ -13,6 +13,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Cart = () => {
+  const backend = import.meta.env.VITE_BACKEND_URL;
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
     useContext(CartContext);
   // const { cartItems, clearCart } = useCart();
@@ -30,7 +31,7 @@ const Cart = () => {
     e.preventDefault(); // Prevent the default form submission
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/coupons/validate', {
+      const response = await axios.post(`${backend}/api/v1/coupons/validate`, {
         code: couponCode,
       });
 

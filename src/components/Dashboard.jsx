@@ -160,7 +160,7 @@ const Dashboard = () => {
     console.log('Creating coupon:', couponData);
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/coupons/create-coupon", {
+      const response = await fetch(`${backend}/api/v1/coupons/create-coupon`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
