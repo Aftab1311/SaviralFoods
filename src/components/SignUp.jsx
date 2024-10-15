@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const navigate = useNavigate();
 
-  const backend =  "http://localhost:8000" ;
+  const backend =  import.meta.env.VITE_APP_BACKEND_URL ;
 
   const [formData, setFormData] = useState({
     name: "",

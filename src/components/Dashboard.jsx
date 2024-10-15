@@ -9,7 +9,7 @@ import ProductForm from "./ProductForm";
 
 const Dashboard = () => {
 
-  const backend =  "http://localhost:8000" ;
+  const backend =  import.meta.env.VITE_APP_BACKEND_URL ;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

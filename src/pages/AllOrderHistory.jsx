@@ -7,7 +7,7 @@ const AllOrderHistory = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState('');
   const { isAuthenticated } = useContext(AuthContext);
-  const backend = "http://localhost:8000";
+  const backend = import.meta.env.VITE_APP_BACKEND_URL;
   const [userEmail, setUserEmail] = useState(""); // Store userEmail state
 
   useEffect(() => {

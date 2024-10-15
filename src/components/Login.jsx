@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 
 const Login = () => {
-  const backend =  "http://localhost:8000" ;
+  const backend =  import.meta.env.VITE_APP_BACKEND_URL;
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
