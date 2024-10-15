@@ -617,7 +617,11 @@ const Dashboard = () => {
                 <td className="border border-gray-300 px-4 py-2">{coupon.code}</td>
                 <td className="border border-gray-300 px-4 py-2">{coupon.discountPercentage}</td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {new Date(coupon.expiryDate).toLocaleDateString()}
+                  {new Date(coupon.expiryDate).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  })}
                 </td>
                 <td className={`border border-gray-300 px-4 py-2 ${className}`}>
                   {status}
