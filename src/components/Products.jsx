@@ -10,7 +10,7 @@ export const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backend =  import.meta.env.VITE_APP_BACKEND_URL ;
+  const backend =  import.meta.env.VITE_BACKEND_URL ;
 
   useEffect(() => {
     // Fetch products from the API

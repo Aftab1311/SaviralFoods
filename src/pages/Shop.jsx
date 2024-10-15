@@ -15,7 +15,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
 
-  const backend =  import.meta.env.VITE_APP_BACKEND_URL ; // Backend URL
+  const backend =  import.meta.env.VITE_BACKEND_URL ; // Backend URL
 
   useEffect(() => {
     // Fetch products from the API

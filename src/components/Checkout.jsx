@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
-  const backend = import.meta.env.VITE_APP_BACKEND_URL;
+  const backend = import.meta.env.VITE_BACKEND_URL;
   const location = useLocation();
   const { mainPrice, discountPercentage } = location.state || {};
   const [userData, setUserData] = useState(null);
