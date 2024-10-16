@@ -144,25 +144,22 @@ const Cart = () => {
                         >
                           <RiSubtractFill />
                         </button>
-                        {item.quantity}
-                        <button
-                          className="w-6 h-6 rounded-full border border-[#dadada] flex items-center justify-center cursor-pointer"
-                          onClick={() => addToCart(item)}
-                        >
-                          <IoMdAdd />
-                        </button>
-                      </div>
-                    </div>
-                    <div>
-                    <h1 className="flex justify-center items-center gap-3">
-                      {/* <h3 className="text-[grey] font-medium text-md">
-                        ₹{item.price}
-                      </h3> */}
-                      <span className="text-xl font-semibold">
-                        ₹{item.price*item.quantity}
-                      </span>
-                    </h1>
-                    </div>
+                        {item.quantity} x {item.selectedQuantity}
+<button
+  className="w-6 h-6 rounded-full border border-[#dadada] flex items-center justify-center cursor-pointer"
+  onClick={() => addToCart(item)}
+>
+  <IoMdAdd />
+</button>
+</div>
+</div>
+<div>
+<h1 className="flex justify-center items-center gap-3">
+  <span className="text-xl font-semibold">
+    ₹{(item.price * item.quantity).toFixed(2)}
+  </span>
+</h1>
+</div>
                   </div>
                 </div>
               ))}

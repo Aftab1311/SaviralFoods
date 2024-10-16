@@ -91,8 +91,8 @@ const Navbar = () => {
         <Link to="/" className="flex items-center text-center justify-start  gap-2">
           <img src={logoImage} alt="Logo" className={`  rounded-full ${isHomePage ? (scrolled ? 'md:h-12 h-10' :'h-16 md:h-16 '): 'h-10 md:h-12 '}  `} />
           <span className={`
-              font-medium  text-black mt-0 text-left tracking-tight
-            ${scrolled || !isHomePage ? 'text-sm md:text-base text-black hidden md:block' : 'text-base md:text-xl text-white hidden md:block'}
+              font-semibold text-black mt-0 text-left tracking-tight font-montserrat 
+            ${scrolled || !isHomePage ? 'text-sm md:text-lg text-black hidden md:block' : 'text-lg md:text-2xl text-white hidden md:block'}
           `}>
             Saviral Foods
           </span>

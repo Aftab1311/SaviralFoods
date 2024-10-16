@@ -40,11 +40,10 @@ const ProductCard = ({ product }) => {
         <div>
           <h3 className="text-base md:text-lg font-semibold mb-2 text-center">{product.name}</h3>
           <div className="flex justify-center items-center space-x-2 mb-3">
-            <p className="text-[#7fba00] font-bold text-xl">₹{product.price.toFixed(2)}</p>
-            {product.oldPrice && (
-              <p className="text-gray-500 line-through text-sm">₹{product.oldPrice.toFixed(2)}</p>
-            )}
-          </div>
+  <p className="text-[#7fba00] font-bold text-xl">
+    ₹{product.quantityPrices[0].price.toFixed(2)} / {product.quantityPrices[0].quantity}
+  </p>
+</div>
         </div>
         <div className="flex flex-col space-y-2">
           <button

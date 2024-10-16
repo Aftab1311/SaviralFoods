@@ -189,12 +189,12 @@ const Checkout = () => {
           <div className="order-summary w-full md:w-[30%]  h-auto min-h-[300px] p-5 bg-white border border-[#dadada] rounded-xl">
             <h2 className="text-xl font-medium mb-4">Order Summary</h2>
             <div className="flex flex-col gap-4">
-              {cartItems.map((item) => (
-                <div key={item.id} className="flex justify-between">
-                  <span>{item.name} x {item.quantity}</span>
-                  <span>₹{(item.price * item.quantity).toFixed(2)}</span>
-                </div>
-              ))}
+            {cartItems.map((item) => (
+  <div key={item.id} className="flex justify-between">
+    <span>{item.name} ({item.selectedQuantity}) x {item.quantity}</span>
+    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+  </div>
+))}
               <div className="flex justify-between font-bold mt-4">
                 <span>Sub Total</span>
                 <span>₹{getCartTotal().toFixed(2)}</span>

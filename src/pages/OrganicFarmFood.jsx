@@ -3,13 +3,13 @@ import React from 'react';
 const Organic  = () => {
   const features = [
     { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'Saviral Foods ' },
-    { icon: 'feature-2.png', title: '100%', boldTitle: 'organic dairy' },
+    { icon: 'feature-2.png', title: '100%', boldTitle: 'Natural dairy' },
     { icon: 'feature-3.png', title: 'premium', boldTitle: 'quality' },
     { icon: 'feature-4.png', title: '100%', boldTitle: 'natural' },
   ];
 
   return (
-    <div className="bg-[#f9f9f5] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="bg-[#f9f9f5] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-0">
       <img src="/images/left_mint_leave.png" alt="Left Leaf" className="absolute left-0 top-36 w-24 lg:w-36" />
       <img src="/images/right_mint_leave.png" alt="Right Leaf" className="absolute right-0 top-96 w-24 lg:w-36" />
       
@@ -17,7 +17,7 @@ const Organic  = () => {
         <img src="/images/chotipatti.png" alt="Chotipatti" className="h-3 mx-auto mb-6" />
         
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#505050] mb-2">
-          we are <span className="font-bold text-[#515153]">organic  </span>
+          we are <span className="font-bold text-[#515153]">Natural  </span>
         </h1>
         <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT Saviral Foods  ----</h3>
         <p className="text-base sm:text-lg text-[#7a7a7a] max-w-3xl mx-auto mb-12 lg:mb-24">
@@ -51,8 +51,8 @@ const Organic  = () => {
         </div>
 
       </div>
-      <div className='w-full h-full'>
-      <img src="/images/bora.png" alt="Organic Grapefruit" className="mx-auto mt-16 -mb-20 md:-mb-72 z-[100]" />
+      <div className='w-full flex justify-center items-center h-full'>
+      <img src="/images/bora.png" alt="Natural Grapefruit" className="mx-auto mt-0 w-1/2 -mb-20 md:-mb-72 z-[100]" />
       </div>
     </div>
   );

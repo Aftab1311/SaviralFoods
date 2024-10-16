@@ -1,100 +1,124 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import axios from 'axios';
 import ProductCard from '../components/Card';
 import { useNavigate } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
 
 const Shop = () => {
   const [price, setPrice] = useState(1000);
   const [category, setCategory] = useState('All');
   const [sortBy, setSortBy] = useState('popular');
   const [priceFilter, setPriceFilter] = useState('all');
-  const [searchTerm, setSearchTerm] = useState(''); // For search input
-  const [products, setProducts] = useState([]); // Products from API
-  const [filteredProducts, setFilteredProducts] = useState([]); // Filtered products
-  const [categories, setCategories] = useState(['All']); 
-  const [loading, setLoading] = useState(true); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categories, setCategories] = useState(['All']);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  const backend =  import.meta.env.VITE_BACKEND_URL ; // Backend URL
-
-  useEffect(() => {
-    // Fetch products from the API
-    axios
-      .get(`${backend}/api/v1/products`)
-      .then((response) => {
-        const fetchedProducts = response.data; 
-        if (fetchedProducts && Array.isArray(fetchedProducts)) {
-          setProducts(fetchedProducts);
-          setCategories(['All', ...new Set(fetchedProducts.map((product) => product.category))]);
-          setFilteredProducts(fetchedProducts); // Initialize filtered products
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [backend]);
-
+  const backend = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
+  const loadingRef = useRef(false);
+  const lastLoadedPageRef = useRef(0);
 
-  // Filtering logic that triggers when the search term or filters are updated
+  const fetchProducts = useCallback(async (pageToFetch) => {
+    if (!hasMore || loadingRef.current || pageToFetch <= lastLoadedPageRef.current) return;
+    loadingRef.current = true;
+    setLoading(true);
+    try {
+      const response = await axios.get(`${backend}/api/v1/products`, {
+        params: { page: pageToFetch, limit: 9 }
+      });
+      const newProducts = response.data.products;
+      setProducts(prevProducts => [...prevProducts, ...newProducts]);
+      setHasMore(response.data.hasMore);
+      setPage(pageToFetch + 1);
+      lastLoadedPageRef.current = pageToFetch;
+      if (pageToFetch === 1) {
+        setCategories(['All', ...new Set(newProducts.map(product => product.category))]);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+      loadingRef.current = false;
+    }
+  }, [backend, hasMore]);
+
   useEffect(() => {
-    if (!Array.isArray(products) || products.length === 0) return; // Avoid filtering if products aren't ready
+    fetchProducts(1);
+  }, [fetchProducts]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      const scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+      const scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 1200;
+
+      if (scrolledToBottom && !loadingRef.current && hasMore) {
+        fetchProducts(page);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [fetchProducts, page, hasMore]);
+
+  useEffect(() => {
+    if (!Array.isArray(products) || products.length === 0) return;
   
     let result = [...products];
   
-    // Filter by category
     if (category !== 'All') {
       result = result.filter(product => product.category === category);
     }
   
-    // Filter by price
-    result = result.filter(product => product.price <= price);
+    result = result.filter(product => {
+      const productPrice = product.quantityPrices[0]?.price || 0;
+      return productPrice <= price;
+    });
   
-    // Sort by price (high to low, low to high)
     if (priceFilter === 'highToLow') {
-      result.sort((a, b) => b.price - a.price);
+      result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
     } else if (priceFilter === 'lowToHigh') {
-      result.sort((a, b) => a.price - b.price);
+      result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
     }
   
-    // Filter by search term (case-insensitive)
     if (searchTerm) {
       result = result.filter(product =>
         (product.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-         product.description?.toLowerCase().includes(searchTerm.toLowerCase()))
+         product.desc?.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
   
-    // Sort by the selected sort option (e.g., popular, priceAsc, priceDesc)
     switch (sortBy) {
       case 'priceAsc':
-        result.sort((a, b) => a.price - b.price);
+        result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
         break;
       case 'priceDesc':
-        result.sort((a, b) => b.price - a.price);
+        result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
         break;
       case 'popular':
       default:
         break;
     }
   
-    setFilteredProducts(result); // Update the filtered products state
+    setFilteredProducts(result);
   }, [category, price, sortBy, priceFilter, searchTerm, products]);
-  
 
-  // Handle search input change
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value); // Update search term state
+    setSearchTerm(e.target.value);
   };
 
-  if (loading) {
-    return <div className="mt-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>; 
+  if (loading && products.length === 0) {
+    return <div className="mt-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>; 
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -151,13 +175,12 @@ const Shop = () => {
             />
           </div>
 
-          {/* Search Bar */}
           <div className="w-[90%] md:w-[35%] relative mt-2">
             <input
               type="text"
               placeholder="Search products..."
               value={searchTerm}
-              onChange={handleSearchChange} // Handle search input change
+              onChange={handleSearchChange}
               className="p-2 pl-10 pr-4 w-full rounded-full border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-300"
             />
             <svg
@@ -179,10 +202,9 @@ const Shop = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-8 p-4 md:p-8">
-        {/* Show filtered products */}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <div key={product.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs">
+            <div key={product._id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs">
               <ProductCard product={product} />
             </div>
           ))
@@ -190,6 +212,11 @@ const Shop = () => {
           <div className="text-center text-gray-600">No products found</div>
         )}
       </div>
+      {loading && products.length > 0 && (
+        <div className="flex justify-center items-center py-4">
+          <Loader2 className="w-8 h-8 animate-spin text-green-500" />
+        </div>
+      )}
     </div>
   );
 };

@@ -3,23 +3,22 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Ensure axios is imported
 import { CartContext } from "./CartContext";
 import { convertImageToBase64 } from "../utils";
+import { Loader2 } from "lucide-react"; // Import Loader2 from lucide-react
 
 const ProductCard = ({ product }) => {
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
-  // Replace with your actual backend URL
-
-  const { addToCart } = useContext(CartContext);
-
   const navigate = useNavigate();
 
-  // const handleViewDetails = () => {
-  //   navigate(`/product/${product.product_id}`, { state: { product } });
-  // };
+  const handleViewProduct = () => {
+    navigate(`/products/${product.product_id}`, { state: { product } });
+  };
 
-  // const handleBuyNow = (e) => {
-  //   e.stopPropagation();
-  //   navigate('/cart', { state: { product } });
-  // };
+  // Check if product.quantityPrices exists and has at least one item
+  const price = product.quantityPrices && product.quantityPrices.length > 0
+    ? product.quantityPrices[0].price
+    : product.price; // Fallback to product.price if quantityPrices is not available
+
+  // Calculate the "old" price (15% more than the current price)
+  const oldPrice = price ? price * 1.15 : null;
 
   return (
     <div
@@ -27,50 +26,35 @@ const ProductCard = ({ product }) => {
       id="offers"
     >
       <div>
-        {/* <div className="flex gap-2 mb-2">
-          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs">NEW</span>
-          <span className="bg-cyan-500 text-white px-3 py-1 rounded-full text-xs">SALE</span>
-        </div> */}
         <img
           src={convertImageToBase64(product.Image)}
           alt={product.name}
           className="w-full h-44 object-center mb-4 rounded-md"
         />
         <div className="text-center">
-          {/* <div className="text-xs text-gray-600 uppercase tracking-wide mb-1">
-            Fresh Atta
-          </div> */}
           <div className="text-lg font-bold text-gray-800 mb-2 capitalize">
             {product.name}
           </div>
-          <span>Quantity : {product.quantity}</span>
         </div>
       </div>
       <div>
-        <div className="flex justify-center items-center gap-2 mb-3">
-          <span className="text-lg font-bold text-green-500">
-            ₹{(product.price !== undefined ? product.price : 0).toFixed(2)}
-          </span>
-          <span className="text-sm line-through text-gray-400">
-            ₹
-            {(product.oldPrice !== undefined ? product.oldPrice : 0).toFixed(2)}
-          </span>
-         
-        </div>
+        {price && (
+          <div className="flex justify-center items-center gap-2 mb-3">
+            <span className="text-lg font-bold text-green-500">
+              ₹{price.toFixed(2)}
+            </span>
+            {oldPrice && (
+              <span className="text-sm line-through text-gray-400">
+                ₹{oldPrice.toFixed(2)}
+              </span>
+            )}
+          </div>
+        )}
         <button
-          className="w-full bg-green-500 text-white py-2 px-4 rounded-md text-sm font-semibold transition-colors duration-300 hover:bg-green-600"
-          onClick={() => {
-            addToCart({
-              product_id: product.product_id,
-              name: product.name,
-              Image: product.Image,
-              quantity: 1,
-              price: product.price,
-            });
-            alert("Product added to cart");
-          }}
+          className="w-full bg-[#7fba00] text-white py-2 px-4 rounded-full text-sm font-semibold transition-colors duration-300 hover:bg-[#6ca300]"
+          onClick={handleViewProduct}
         >
-          Add to Cart
+          View Product
         </button>
       </div>
     </div>
@@ -127,7 +111,11 @@ const Comp4 = () => {
     };
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+    <div className="flex justify-center items-center h-64">
+      <Loader2 className="w-12 h-12 animate-spin text-[#7fba00]" />
+    </div>
+  );
   if (error) return <p>Error: {error}</p>;
 
   return (

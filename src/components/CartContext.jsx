@@ -9,21 +9,21 @@ export const CartProvider = ({ children }) => {
       : []
   );
 
-  const addToCart = (item, quantity = 1) => {
+  const addToCart = (item, quantity = 1, selectedQuantity) => {
     const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.product_id === item.product_id
+      (cartItem) => cartItem.product_id === item.product_id && cartItem.selectedQuantity === selectedQuantity
     );
-
+  
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.product_id === item.product_id
+          cartItem.product_id === item.product_id && cartItem.selectedQuantity === selectedQuantity
             ? { ...cartItem, quantity: cartItem.quantity + quantity }
             : cartItem
         )
       );
     } else {
-      setCartItems([...cartItems, { ...item, quantity }]);
+      setCartItems([...cartItems, { ...item, quantity, selectedQuantity }]);
     }
   };
 

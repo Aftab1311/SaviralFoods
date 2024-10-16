@@ -15,23 +15,19 @@ const ProductDescription = () => {
   // Retrieve product from state
 
   console.log(product);
-  const [newquantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedQuantityPrice, setSelectedQuantityPrice] = useState(product.quantityPrices[0]);
 
-  const increaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const increaseQuantity = () => setQuantity(prev => prev + 1);
+  const decreaseQuantity = () => setQuantity(prev => prev > 1 ? prev - 1 : 1);
+
+  const handleQuantityPriceChange = (event) => {
+    const selectedQP = product.quantityPrices.find(qp => qp.quantity === event.target.value);
+    setSelectedQuantityPrice(selectedQP);
+    setQuantity(1);
   };
 
-  const decreaseQuantity = () => {
-    if (newquantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
-  };
-
-  // Corrected: use newquantity for calculations
-  const totalPrice = (product.price * newquantity).toFixed(2);
-  const oldTotalPrice = product.oldPrice
-    ? (product.oldPrice * newquantity).toFixed(2)
-    : null;
+  const totalPrice = (selectedQuantityPrice.price * quantity).toFixed(2);
 
   // Create an array of image sources from the product object
   const imageSources = [
@@ -119,33 +115,44 @@ const ProductDescription = () => {
         </div>
 
         {/* Product Details */}
-        <div className="md:w-1/2 lg:w-3/5 md:pl-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-3">
+        <div className="md:w-1/2 lg:w-2/3 md:pl-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">
             {product.name}
           </h1>
+
+          <div className="mb-4">
+            <h3 className="text-xl font-semibold mb-2">Select Quantity:</h3>
+            <select
+              value={selectedQuantityPrice.quantity}
+              onChange={handleQuantityPriceChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              {product.quantityPrices.map((qp, index) => (
+                <option key={index} value={qp.quantity}>
+                  {qp.quantity} - ₹{qp.price.toFixed(2)}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="flex items-center mb-4">
             <p className="text-3xl font-bold text-green-600 mr-4">
               ₹{totalPrice}
             </p>
-            {oldTotalPrice && (
-              <p className="text-xl text-gray-500 line-through">
-                ₹{oldTotalPrice}
-              </p>
-            )}
+            <p className="text-sm text-gray-500">/{selectedQuantityPrice.quantity}</p>
             <div className="flex items-center ml-6 bg-white rounded-md shadow-md p-2">
               <button
                 onClick={decreaseQuantity}
-                className="w-10 h-10 flex justify-center items-center  text-gray-800 font-semibold py-2 px-3 hover:bg-gray-50   transition duration-300 ease-in-out"
+                className="w-10 h-10 flex justify-center items-center text-gray-800 font-semibold py-2 px-3 hover:bg-gray-50 transition duration-300 ease-in-out"
               >
                 -
               </button>
-              <span className="text-xl font-bold text-gray-800  px-4">
-                {newquantity}
+              <span className="text-xl font-bold text-gray-800 px-4">
+                {quantity}
               </span>
               <button
                 onClick={increaseQuantity}
-                className="w-10 h-10 flex justify-center items-center  text-gray-800 font-semibold py-2 px-3 hover:bg-gray-50   transition duration-300 ease-in-out"
+                className="w-10 h-10 flex justify-center items-center text-gray-800 font-semibold py-2 px-3 hover:bg-gray-50 transition duration-300 ease-in-out"
               >
                 +
               </button>
@@ -170,8 +177,9 @@ const ProductDescription = () => {
                 product_id: product.product_id,
                 name: product.name,
                 Image: product.Image,
-                quantity: newquantity,
-                price: product.price,
+                quantity: quantity,
+                price: selectedQuantityPrice.price,
+                selectedQuantity: selectedQuantityPrice.quantity,
               });
               navigate("/cart");
             }}

@@ -3,30 +3,33 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from './Card';
 
-
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    // Fetch products from the API
-    axios
-      .get(`${backend}/api/v1/products`)
-      .then((response) => {
-        const fetchedProducts = response.data; // Adjust based on your actual API response format
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${backend}/api/v1/products`, {
+          params: { limit: 8 }
+        });
+        const fetchedProducts = response.data.products;
         setProducts(fetchedProducts);
-        setCategories([...new Set(fetchedProducts.map((product) => product.category))]);
-        setLoading(false);
-      })
-      .catch((err) => {
+        setCategories(['All', ...new Set(fetchedProducts.map(product => product.category))]);
+      } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+
+    fetchProducts();
+  }, [backend]);
 
   // Function to shuffle an array
   const shuffleArray = (array) => {
@@ -39,18 +42,8 @@ export const Products = () => {
 
   // Memoize the filtered and shuffled products
   const displayProducts = useMemo(() => {
-    const shuffledProducts = shuffleArray([...products]);
-    const productsByCategory = categories.reduce((acc, category) => {
-      acc[category] = shuffledProducts.filter(p => p.category === category).slice(0, 3);
-      return acc;
-    }, {});
-
-    return shuffledProducts.filter(product => 
-      Object.values(productsByCategory).some(categoryProducts => 
-        categoryProducts.includes(product)
-      )
-    );
-  }, [products, categories]);
+    return shuffleArray([...products]);
+  }, [products]);
 
   const filteredProducts = activeCategory === 'all' 
     ? displayProducts 
@@ -61,9 +54,8 @@ export const Products = () => {
   };
 
   if (loading) {
-    return <div className="my-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>; // Display loading message
+    return <div className="my-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>;
   }
-
 
   if (error) {
     return <div>Error: {error}</div>;
