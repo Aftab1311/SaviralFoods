@@ -117,7 +117,7 @@ const Comp5 = () => {
 
         <div style={{ marginBottom: '30px' }}>
           <h1 style={styles.title}>
-            Saviral Foods <span style={{ color: '#333', fontWeight: 'normal' }}>Natural since 1990</span> 
+            Saviral Foods <span style={{ color: '#333', fontWeight: 'normal' }}>Fresh since 1990</span> 
           </h1>
           <div style={{ marginTop: '-20px', gap: '0px' }}>
             <div style={styles.subtitle}>100% Fresh GUARANTEE</div>
@@ -130,7 +130,7 @@ const Comp5 = () => {
         </div>
 
         <p style={styles.paragraph}>
-        At Saviral Foods, we're passionate about providing you with the purest, most natural foods. That's why we've made a commitment to offering 100% Fresh products. Our dedication to Natural practices ensures that our products are free from harmful synthetic pesticides, herbicides, and genetically modified organisms (GMOs).
+        At Saviral Foods, we're passionate about providing you with the purest, most Fresh foods. That's why we've made a commitment to offering 100% Fresh products. Our dedication to Fresh practices ensures that our products are free from harmful synthetic pesticides, herbicides, and genetically modified organisms (GMOs).
         </p>
 
         <div style={styles.signatureSection}>

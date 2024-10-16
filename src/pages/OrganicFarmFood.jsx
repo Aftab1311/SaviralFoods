@@ -3,9 +3,9 @@ import React from 'react';
 const Organic  = () => {
   const features = [
     { icon: 'feature-1.png', title: 'fresh from', boldTitle: 'Saviral Foods ' },
-    { icon: 'feature-2.png', title: '100%', boldTitle: 'Natural dairy' },
+    { icon: 'feature-2.png', title: '100%', boldTitle: 'Fresh dairy' },
     { icon: 'feature-3.png', title: 'premium', boldTitle: 'quality' },
-    { icon: 'feature-4.png', title: '100%', boldTitle: 'natural' },
+    { icon: 'feature-4.png', title: '100%', boldTitle: 'Fresh' },
   ];
 
   return (
@@ -17,7 +17,7 @@ const Organic  = () => {
         <img src="/images/chotipatti.png" alt="Chotipatti" className="h-3 mx-auto mb-6" />
         
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#505050] mb-2">
-          we are <span className="font-bold text-[#515153]">Natural  </span>
+          we are <span className="font-bold text-[#515153]">Fresh  </span>
         </h1>
         <h3 className="text-sm sm:text-base text-[#515153] mb-6">----ABOUT Saviral Foods  ----</h3>
         <p className="text-base sm:text-lg text-[#7a7a7a] max-w-3xl mx-auto mb-12 lg:mb-24">
@@ -44,7 +44,7 @@ const Organic  = () => {
               <div key={index} className="text-center">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center" style={{backgroundImage: `url('/images/${feature.icon}')`}}></div>
                 <h4 className="text-lg text-[#652f2f] mb-2">{feature.title} <span className="font-bold text-black">{feature.boldTitle}</span></h4>
-                <p className="text-sm text-[#7a7a7a]"> We source our ingredients from trusted Natural farmers who share our passion for sustainable agriculture.</p>
+                <p className="text-sm text-[#7a7a7a]"> We source our ingredients from trusted Fresh farmers who share our passion for sustainable agriculture.</p>
               </div>
             ))}
           </div>
@@ -52,7 +52,7 @@ const Organic  = () => {
 
       </div>
       <div className='w-full flex justify-center items-center h-full'>
-      <img src="/images/bora.png" alt="Natural Grapefruit" className="mx-auto mt-0 w-1/2 -mb-20 md:-mb-72 z-[100]" />
+      <img src="/images/bora.png" alt="Fresh Grapefruit" className="mx-auto mt-0 w-1/2 -mb-20 md:-mb-72 z-[100]" />
       </div>
     </div>
   );

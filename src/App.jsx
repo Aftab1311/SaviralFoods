@@ -20,6 +20,7 @@ import { ProfilePage } from "./components/ProfilePage";
 import ProductDescription from "./components/ProductDescription";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import AllOrderHistory from "./pages/AllOrderHistory";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<ProductsShowcase />} />
             <Route path="/products/:id" element={<ProductDescription />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/allorders" element={<AllOrderHistory/>} />
 
 
             <Route path="/login" element={<Login />} />

@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode"; // To decode the JWT token
 
 const OrdersHistory = () => {
 
-    const backend =  import.meta.env.VITE_BACKEND_URL ;
+    const backend = import.meta.env.VITE_BACKEND_URL ;
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState('');
 

@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="space-y-4">
           <h3 className="text-xl sm:text-2xl font-semibold text-green-600">Saviral Foods <span className="font-normal text-gray-700"> </span></h3>
-          <p className="uppercase text-xs sm:text-sm text-gray-500">Natural STORE</p>
+          <p className="uppercase text-xs sm:text-sm text-gray-500">Fresh STORE</p>
           <div className="w-12 h-0.5 bg-green-600"></div>
           <p className="text-sm text-gray-600">Welcome to Saviral Foods Store</p>
           <div className="space-y-2 text-sm text-gray-600">

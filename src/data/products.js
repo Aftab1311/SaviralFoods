@@ -5,7 +5,7 @@ export const products = [
     price: 60,
     oldPrice: 72,
     quantity: "One Litre",
-    description: "Ideal for cooking, frying, and salad dressings, this oil enhances the taste of dishes while promoting a healthy lifestyle. Its unrefined nature means it’s free from chemicals and additives, making it a natural choice for health-conscious consumers. .",
+    description: "Ideal for cooking, frying, and salad dressings, this oil enhances the taste of dishes while promoting a healthy lifestyle. Its unrefined nature means it’s free from chemicals and additives, making it a Fresh choice for health-conscious consumers. .",
     imageSrc: "/images/oilsav.jpg",
     otherImages: [
       "/images/oilsav.jpg",
@@ -100,7 +100,7 @@ export const products = [
     price: 100,
     oldPrice: 120,
     quantity: "One Kilogram",
-    description: "Makka Atta is naturally gluten-free, making it a great alternative for those with gluten sensitivities. It is rich in carbohydrates, fiber, and essential nutrients like vitamins B and E, which contribute to overall health. Its slightly sweet and earthy flavor adds a unique taste to both savory and sweet dishes.",
+    description: "Makka Atta is Freshly gluten-free, making it a great alternative for those with gluten sensitivities. It is rich in carbohydrates, fiber, and essential nutrients like vitamins B and E, which contribute to overall health. Its slightly sweet and earthy flavor adds a unique taste to both savory and sweet dishes.",
     imageSrc: "/images/Makka atta.jpg",
     otherImages: [
       "/images/Makka atta.jpg",
@@ -230,7 +230,7 @@ export const products = [
     price: 0,
     oldPrice: 0,
     quantity: "250 grams",
-    description: "Naturally grown Oil, packed with vibrant flavor and freshness.",
+    description: "Freshly grown Oil, packed with vibrant flavor and freshness.",
     imageSrc: "/images/oilsav.jpg",
     otherImages: [
       "/images/oilsav.jpg",
@@ -302,7 +302,7 @@ export const products = [
     price: 0,
     oldPrice: 0,
     quantity: "1 dozen",
-    description: "Our bananas are naturally sweet and perfectly ripened, providing a convenient and nutritious snack straight from our farm.",
+    description: "Our bananas are Freshly sweet and perfectly ripened, providing a convenient and nutritious snack straight from our farm.",
     imageSrc: "/images/Sugar release.jpg",
     otherImages: [
       "/images/Sugar release.jpg",

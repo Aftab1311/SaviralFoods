@@ -69,7 +69,7 @@ const Comp4 = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const cardsRef = useRef(null);
 
-  const backend =  import.meta.env.VITE_BACKEND_URL ;
+  const backend = import.meta.env.VITE_BACKEND_URL ;
   // Replace with your actual backend URL
 
   useEffect(() => {
