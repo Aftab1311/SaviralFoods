@@ -9,37 +9,39 @@ export const CartProvider = ({ children }) => {
       : []
   );
 
-  const addToCart = (item, quantity = 1, selectedQuantity) => {
+  const addToCart = (item) => {
     const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.product_id === item.product_id && cartItem.selectedQuantity === selectedQuantity
+      (cartItem) => cartItem.product_id === item.product_id && cartItem.selectedQuantity === item.selectedQuantity
     );
   
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.product_id === item.product_id && cartItem.selectedQuantity === selectedQuantity
-            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+          cartItem.product_id === item.product_id && cartItem.selectedQuantity === item.selectedQuantity
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         )
       );
     } else {
-      setCartItems([...cartItems, { ...item, quantity, selectedQuantity }]);
+      setCartItems([...cartItems, item]);
     }
   };
 
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.product_id === item.product_id
+      (cartItem) => cartItem.product_id === item.product_id && cartItem.selectedQuantity === item.selectedQuantity
     );
 
     if (isItemInCart.quantity === 1) {
       setCartItems(
-        cartItems.filter((cartItem) => cartItem.product_id !== item.product_id)
+        cartItems.filter((cartItem) => 
+          !(cartItem.product_id === item.product_id && cartItem.selectedQuantity === item.selectedQuantity)
+        )
       );
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.product_id === item.product_id
+          cartItem.product_id === item.product_id && cartItem.selectedQuantity === item.selectedQuantity
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )

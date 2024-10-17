@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import AuthContext from "./AuthContext";
-import Footer from "./Footer";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
@@ -12,7 +11,7 @@ const Checkout = () => {
   const location = useLocation();
   const { mainPrice, discountPercentage } = location.state || {};
   const [userData, setUserData] = useState(null);
-  
+
   useEffect(() => {
     // Get JWT token from local storage
     const token = localStorage.getItem('authToken');
@@ -185,7 +184,7 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-      <Footer />
+
     </div>
   );
 };
