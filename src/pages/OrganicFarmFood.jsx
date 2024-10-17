@@ -52,7 +52,7 @@ const Organic  = () => {
 
       </div>
       <div className='w-full flex justify-center items-center h-full'>
-      <img src="/images/bora.png" alt="Fresh Grapefruit" className="mx-auto mt-0 w-1/2 -mb-20 md:-mb-72 z-[100]" />
+      <img src="/images/bora.png" alt="Fresh Grapefruit" className="mx-auto mt-0 w-1/2 -mb-20 md:-mb-20" />
       </div>
     </div>
   );

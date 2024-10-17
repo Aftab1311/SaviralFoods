@@ -234,8 +234,8 @@ const AboutPage = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <img src="/images/bora.png" alt="Organic Grapefruit" className="max-w-full h-auto mx-auto" />
+        <div className="text-center">
+          <img src="/images/bora.png" alt="Organic Grapefruit" className="w-[700px] h-[700px] mx-auto" />
         </div>
       </div>
 

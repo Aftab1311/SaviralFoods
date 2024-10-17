@@ -20,7 +20,7 @@ export const Products = () => {
         });
         const fetchedProducts = response.data.products;
         setProducts(fetchedProducts);
-        setCategories(['All', ...new Set(fetchedProducts.map(product => product.category))]);
+        setCategories(['all', ...new Set(fetchedProducts.map(product => product.category))]);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -135,7 +135,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 md:grid-cols-3 md:gap-10 md:px-10">
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 md:gap-10 md:px-10">
             {filteredProducts.map((product) => (
               <div key={product.product_id} className="w-full p-2">
                 <ProductCard product={product} />
