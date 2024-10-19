@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
         <img
           src={convertImageToBase64(product.Image)}
           alt={product.name}
-          className="w-full h-[220px] md:h-72 mb-2 object-center transition duration-300 ease-in-out group-hover:scale-105"
+          className="w-full h-[150px] md:h-[180px] mb-2 object-center transition duration-300 ease-in-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-zinc-900 bg-opacity-75 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-100 ease-in-out">
           <button
@@ -38,9 +38,9 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="p-4 flex-grow flex flex-col justify-between">
         <div>
-          <h3 className="text-base md:text-lg font-semibold mb-2 text-center">{product.name}</h3>
+          <h3 className="text-base md:text-md font-semibold mb-2 text-center ">{product.name}</h3>
           <div className="flex justify-center items-center space-x-2 mb-3">
-  <p className="text-[#7fba00] font-bold text-xl">
+  <p className="text-[#7fba00] font-bold text-base">
     ₹{product.quantityPrices[0].price.toFixed(2)} / {product.quantityPrices[0].quantity}
   </p>
 </div>

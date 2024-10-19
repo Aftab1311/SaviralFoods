@@ -60,7 +60,9 @@ const Dashboard = () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await axios.delete(`${backend}/api/v1/products/${product._id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
         });
         fetchProducts();
       } catch (error) {
@@ -71,23 +73,30 @@ const Dashboard = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
+    return date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
       hour12: true,
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   };
 
   // Sort orders by createdAt date, most recent first
-  const sortedOrders = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortedOrders = [...orders].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
+  console.log(orders);
+  console.log(sortedOrders);
 
   return (
     <div className="bg-gray-100 min-h-screen mb-0 mt-20">
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Dashboard</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+          Dashboard
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-lg p-6 transition duration-300 hover:shadow-xl">
@@ -102,7 +111,7 @@ const Dashboard = () => {
                 <PlusCircle className="mr-2" /> Add Product
               </button>
             </div>
-            
+
             <button
               onClick={toggleGridVisibility}
               className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition duration-300 shadow-md hover:shadow-lg"
@@ -114,7 +123,10 @@ const Dashboard = () => {
             <h2 className="text-2xl font-semibold text-gray-700 mb-4 flex items-center">
               <ShoppingCart className="mr-2 text-green-500" /> Recent Orders
             </h2>
-            <p className="text-gray-600 text-lg">Total Orders: <span className="font-bold text-green-500">{orders.length}</span></p>
+            <p className="text-gray-600 text-lg">
+              Total Orders:{" "}
+              <span className="font-bold text-green-500">{orders.length}</span>
+            </p>
           </div>
         </div>
 
@@ -127,7 +139,10 @@ const Dashboard = () => {
         {isGridVisible && !loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
             {products.map((item) => (
-              <div key={item._id} className="bg-white border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+              <div
+                key={item._id}
+                className="bg-white border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+              >
                 <div className="relative w-full pb-[100%]">
                   <img
                     src={convertImageToBase64(item.Image)}
@@ -136,11 +151,16 @@ const Dashboard = () => {
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-lg font-bold mb-2 text-gray-800">{item.name}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-gray-800">
+                    {item.name}
+                  </h3>
                   <p className="text-sm text-gray-600 mb-2">
-                    {item.quantityPrices[0].quantity}: ₹{item.quantityPrices[0].price}
+                    {item.quantityPrices[0].quantity}: ₹
+                    {item.quantityPrices[0].price}
                   </p>
-                  <p className="text-sm text-gray-600">Stock: {item.countInStock}</p>
+                  <p className="text-sm text-gray-600">
+                    Stock: {item.countInStock}
+                  </p>
                   <div className="flex justify-between mt-4 gap-2">
                     <button
                       onClick={() => openPopup(item)}
@@ -162,32 +182,75 @@ const Dashboard = () => {
         )}
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <h2 className="text-2xl font-semibold text-gray-700 p-6 bg-gray-50">Recent Orders</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 p-6 bg-gray-50">
+            Recent Orders
+          </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
-                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Order ID
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Customer
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Address
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Items
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Total Amount
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Created At
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {sortedOrders.map((order) => (
                   <tr key={order._id} className="hover:bg-gray-50">
-                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">{order._id}</td>
-                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">{order.user}</td>
-                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">₹{order.totalPrice}</td>
                     <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        order.status === 'paid' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                      }`}>
+                      {order._id}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.shippingInfo.name}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.shippingInfo.address +
+                        ", " +
+                        order.shippingInfo.city +
+                        ", " + order.shippingInfo.postalCode}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {order.items.map((item, index) => (
+                        <div key={index}>
+                          {item.name} (x{item.quantity}) - ₹{item.price}
+                        </div>
+                      ))}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      ₹{order.totalPrice}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          order.status === "paid"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
                         {order.status}
                       </span>
                     </td>
-                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">{formatDate(order.createdAt)}</td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {formatDate(order.createdAt)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

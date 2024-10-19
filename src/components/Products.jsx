@@ -1,12 +1,12 @@
-import { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import ProductCard from './Card';
+import { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ProductCard from "./Card";
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -16,20 +16,28 @@ export const Products = () => {
       setLoading(true);
       try {
         const response = await axios.get(`${backend}/api/v1/products`, {
-          params: { limit: 8 }
+          params: { limit: 100 },
         });
         const fetchedProducts = response.data.products;
+  
+        // Normalize categories by trimming spaces and converting to lowercase
+        const normalizedCategories = fetchedProducts.map((product) =>
+          product.category.trim().toLowerCase()
+        );
+  
+        // Remove duplicates using a Set
+        setCategories(["all", ...new Set(normalizedCategories)]);
         setProducts(fetchedProducts);
-        setCategories(['all', ...new Set(fetchedProducts.map(product => product.category))]);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchProducts();
   }, [backend]);
+  
 
   // Function to shuffle an array
   const shuffleArray = (array) => {
@@ -45,16 +53,22 @@ export const Products = () => {
     return shuffleArray([...products]);
   }, [products]);
 
-  const filteredProducts = activeCategory === 'all' 
-    ? displayProducts 
-    : products.filter(product => product.category === activeCategory);
+  const filteredProducts =
+    activeCategory === "all"
+      ? displayProducts
+      : products.filter((product) => product.category === activeCategory);
 
   const handleCategoryClick = (category) => {
-    setActiveCategory(prev => prev === category ? 'all' : category);
+    setActiveCategory((prev) => (prev === category ? "all" : category));
   };
+  console.log("categories", categories);
 
   if (loading) {
-    return <div className="my-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>;
+    return (
+      <div className="my-20 w-full flex justify-center text-center text-2xl font-bold">
+        Creating Happiness...
+      </div>
+    );
   }
 
   if (error) {
@@ -67,25 +81,33 @@ export const Products = () => {
         {/* Small and Medium devices layout */}
         <div className="md:hidden text-center mb-10">
           <div className="flex flex-col items-center mb-6">
-            <img src="/images/products-head-fruit.png" alt="Fruits" className="w-auto h-16 object-cover rounded-lg mb-4" />
-            <img src="/images/product-organic.png" alt="Fresh" className="w-auto h-20 object-cover rounded-lg mb-6" />
-            
+            <img
+              src="/images/products-head-fruit.png"
+              alt="Fruits"
+              className="w-auto h-16 object-cover rounded-lg mb-4"
+            />
+            <img
+              src="/images/product-organic.png"
+              alt="Fresh"
+              className="w-auto h-20 object-cover rounded-lg mb-6"
+            />
+
             <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
               <button
                 className="px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 whitespace-nowrap
                   bg-white text-gray-600 border border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]"
-                onClick={() => setActiveCategory('all')}
+                onClick={() => setActiveCategory("all")}
               >
                 all
               </button>
-              
+
               {categories.map((category) => (
                 <button
                   key={category}
                   className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 whitespace-nowrap ${
-                    activeCategory === category 
-                      ? 'bg-[#7fba00] text-white shadow-lg' 
-                      : 'bg-white text-gray-600 border border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]'
+                    activeCategory === category
+                      ? "bg-[#7fba00] text-white shadow-lg"
+                      : "bg-white text-gray-600 border border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]"
                   }`}
                   onClick={() => handleCategoryClick(category)}
                 >
@@ -100,13 +122,13 @@ export const Products = () => {
         <div className="hidden md:block text-center mb-20">
           <div className="flex justify-center items-end">
             <div className="flex space-x-4">
-              {categories.slice(0, 2).map((category) => (
+              {categories.slice(0, 4).map((category) => (
                 <button
                   key={category}
                   className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap -mt-4 ${
-                    activeCategory === category 
-                      ? 'bg-[#7fba00] text-white shadow-lg' 
-                      : 'bg-white text-gray-600 border border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]'
+                    activeCategory === category
+                      ? "bg-[#7fba00] text-white shadow-lg"
+                      : "bg-white text-gray-600 border border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]"
                   }`}
                   onClick={() => handleCategoryClick(category)}
                 >
@@ -115,16 +137,20 @@ export const Products = () => {
               ))}
             </div>
             <div className="flex flex-col items-center mx-16 -mb-6">
-              <img src="/images/Navs.png" alt="Fruits" className="w-auto h-24 object-cover rounded-lg -mt-4" />
+              <img
+                src="/images/Navs.png"
+                alt="Fruits"
+                className="w-auto h-24 object-cover rounded-lg -mt-4"
+              />
             </div>
             <div className="flex space-x-4">
-              {categories.slice(2).map((category) => (
+              {categories.slice(4).map((category) => (
                 <button
                   key={category}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap -mt-4 ${
-                    activeCategory === category 
-                      ? 'bg-[#7fba00] text-white shadow-lg' 
-                      : 'bg-white text-gray-600 border-2 border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]'
+                    activeCategory === category
+                      ? "bg-[#7fba00] text-white shadow-lg"
+                      : "bg-white text-gray-600 border-2 border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]"
                   }`}
                   onClick={() => handleCategoryClick(category)}
                 >
@@ -135,7 +161,7 @@ export const Products = () => {
           </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 md:grid-cols-4 md:gap-10 md:px-10">
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 md:gap-4 md:px-10">
             {filteredProducts.map((product) => (
               <div key={product.product_id} className="w-full p-2">
                 <ProductCard product={product} />
@@ -143,8 +169,11 @@ export const Products = () => {
             ))}
           </div>
         </div>
-        <div className='w-full flex justify-center items-center mt-8'>
-          <Link to="/shop" className="px-6 py-2 text-base md:text-lg font-medium text-black border-2 border-green-500 rounded-full hover:bg-green-500 hover:text-white transition">
+        <div className="w-full flex justify-center items-center mt-8">
+          <Link
+            to="/shop"
+            className="px-6 py-2 text-base md:text-lg font-medium text-black border-2 border-green-500 rounded-full hover:bg-green-500 hover:text-white transition"
+          >
             View More
           </Link>
         </div>
