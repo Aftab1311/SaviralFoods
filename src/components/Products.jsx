@@ -19,12 +19,12 @@ export const Products = () => {
           params: { limit: 100 },
         });
         const fetchedProducts = response.data.products;
-  
+
         // Normalize categories by trimming spaces and converting to lowercase
         const normalizedCategories = fetchedProducts.map((product) =>
           product.category.trim().toLowerCase()
         );
-  
+
         // Remove duplicates using a Set
         setCategories(["all", ...new Set(normalizedCategories)]);
         setProducts(fetchedProducts);
@@ -34,10 +34,9 @@ export const Products = () => {
         setLoading(false);
       }
     };
-  
+
     fetchProducts();
   }, [backend]);
-  
 
   // Function to shuffle an array
   const shuffleArray = (array) => {
@@ -66,7 +65,12 @@ export const Products = () => {
   if (loading) {
     return (
       <div className="my-20 w-full flex justify-center text-center text-2xl font-bold">
-        Creating Happiness...
+        <div className="content">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
       </div>
     );
   }

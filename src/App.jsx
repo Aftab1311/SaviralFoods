@@ -21,6 +21,7 @@ import ProductDescription from "./components/ProductDescription";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import AllOrderHistory from "./pages/AllOrderHistory";
+import "./App.css";
 
 function App() {
   return (
