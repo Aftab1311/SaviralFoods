@@ -36,9 +36,13 @@ const Shop = () => {
       setHasMore(response.data.hasMore);
       setPage(pageToFetch + 1);
       lastLoadedPageRef.current = pageToFetch;
-      if (pageToFetch === 1) {
-        setCategories(['All', ...new Set(newProducts.map(product => product.category))]);
-      }
+  
+      // Update categories each time new products are fetched
+      setCategories((prevCategories) => {
+        const newCategories = [...new Set(newProducts.map(product => product.category))];
+        return [...new Set([...prevCategories, ...newCategories])]; // Merge with existing categories
+      });
+  
     } catch (err) {
       setError(err.message);
     } finally {
@@ -46,6 +50,7 @@ const Shop = () => {
       loadingRef.current = false;
     }
   }, [backend, hasMore]);
+  
 
   useEffect(() => {
     fetchProducts(1);
@@ -112,6 +117,8 @@ const Shop = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  console.log("categories", categories);
+  console.log("products", products);
 
   if (loading && products.length === 0) {
     return <div className="mt-20 w-full flex justify-center text-center text-2xl font-bold">Creating Happiness...</div>;
