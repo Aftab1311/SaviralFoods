@@ -14,12 +14,12 @@
 
 .preloader {
 	text-align: center;
-	max-width: 20em;
+	max-width: 15em;
 	width: 100%;
 }
 .preloader__text {
 	position: relative;
-	height: 1.5em;
+	height: 1em;
 }
 .preloader__msg {
 	animation: msg 0.3s 13.7s linear forwards;
@@ -34,8 +34,8 @@
 .cart {
 	display: block;
 	margin: 0 auto 1.5em auto;
-	width: 8em;
-	height: 8em;
+	width: 6em;
+	height: 6em;
 }
 .cart__lines,
 .cart__top,
