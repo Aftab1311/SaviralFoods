@@ -17,7 +17,7 @@ export const Products = () => {
       setLoading(true);
       try {
         const response = await axios.get(`${backend}/api/v1/products`, {
-          params: { limit: 12 },
+          params: { limit: 8 },
         });
         const fetchedProducts = response.data.products;
 
