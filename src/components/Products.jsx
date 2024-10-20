@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./Card";
 
+
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -16,7 +17,7 @@ export const Products = () => {
       setLoading(true);
       try {
         const response = await axios.get(`${backend}/api/v1/products`, {
-          params: { limit: 40 },
+          params: { limit: 10 },
         });
         const fetchedProducts = response.data.products;
 
@@ -178,7 +179,7 @@ export const Products = () => {
         <div className="hidden md:block text-center mb-20">
           <div className="flex justify-center items-end">
             <div className="flex space-x-4">
-              {categories.slice(0, 4).map((category) => (
+              {categories.slice(0, 2).map((category) => (
                 <button
                   key={category}
                   className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap -mt-4 ${
@@ -199,8 +200,9 @@ export const Products = () => {
                 className="w-auto h-24 object-cover rounded-lg -mt-4"
               />
             </div>
-            <div className="flex space-x-4">
-              {categories.slice(4).map((category) => (
+            <div className=" flex gap-4 items-center">
+              <div className="flex space-x-4">
+              {categories.slice(2).map((category) => (
                 <button
                   key={category}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap -mt-4 ${
@@ -213,6 +215,12 @@ export const Products = () => {
                   {category}
                 </button>
               ))}
+              </div>
+              <Link to={'/shop'}>
+             <div className="px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap -mt-4  bg-white text-gray-600 border-2 border-gray-300 hover:border-[#7fba00] hover:text-[#7fba00]">
+              + See more
+             </div>
+              </Link>
             </div>
           </div>
         </div>
