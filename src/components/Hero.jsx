@@ -3,19 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-screen flex items-center justify-center flex-col p-4 pt-40 md:pt-0 md:mt-0 mb-36 md:mb-10">
-      {/* Background image */}
+    <div className="relative w-full h-screen flex items-center justify-center flex-col p-4">
+      {/* Background image with gradient overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center h-full"
-        style={{ backgroundImage: "url('/images/heros.png')" }}
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{
+          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/heromain.png')"
+        }}
       ></div>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black opacity-60 h-full"></div>
 
       {/* Content */}
       <div className="relative text-center text-white px-4 flex justify-center items-center flex-col max-w-4xl mx-auto">
-        <h1 className="text-5xl lg:text-[80px] xl:text-[95px] font-extralight tracking-tight mb-2 sm:mb-4">
+        <h1 className="text-3xl lg:text-[80px] xl:text-[95px] font-extralight tracking-tight md:leading-[90px] mb-2 sm:mb-4">
           Power Up Your <span className='font-bold tracking-tighter'>Health</span> <br /> 
           with <span className='font-bold tracking-tighter'>Fresh</span> Goodness!
         </h1>

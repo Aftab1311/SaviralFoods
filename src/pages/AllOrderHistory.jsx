@@ -38,11 +38,30 @@ const AllOrderHistory = () => {
       }
     };
 
+   
+  
+
     // Fetch orders only if the user is authenticated
     if (isAuthenticated) {
       fetchOrders();
     }
   }, [isAuthenticated]);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
+  const sortedOrders = [...orders].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   return (
     <div className="w-full px-5 py-10 bg-white mt-20">
@@ -51,38 +70,75 @@ const AllOrderHistory = () => {
           <h1 className="text-3xl font-bold mb-6 text-center">Order History</h1>
           {error && <p className="text-red-500 text-center">{error}</p>}
           {orders.length > 0 ? (
-            <table className="min-w-full table-auto border-collapse border border-gray-300">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border px-4 py-2">Order ID</th>
-                  <th className="border px-4 py-2">User</th>
-                  <th className="border px-4 py-2">Items</th>
-                  <th className="border px-4 py-2">Total Price</th>
-                  <th className="border px-4 py-2">Status</th>
-                  <th className="border px-4 py-2">Created At</th>
+            <table className="min-w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Order ID
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Customer
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Address
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Items
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Amount
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Created At
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {sortedOrders.map((order) => (
+                <tr key={order._id} className="hover:bg-gray-50">
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {order._id}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {order.shippingInfo.name}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {order.shippingInfo.address +
+                      ", " +
+                      order.shippingInfo.city +
+                      ", " + order.shippingInfo.postalCode}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                  {order.items.map((item, index) => (
+                      <div key={index}>
+                        {item.name} (x{item.quantity}) - ₹{item.price}
+                      </div>
+                    ))}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    ₹{order.totalPrice}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        order.status === "paid"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-yellow-100 text-yellow-800"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {formatDate(order.createdAt)}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id} className="hover:bg-gray-100 text-center">
-                    <td className="border px-4 py-2">{order._id}</td>
-                    <td className="border px-4 py-2">{order.user}</td>
-                    <td className="border px-4 py-2">
-                      {order.items.map((item, index) => (
-                        <div key={index}>
-                          {item.name} (x{item.quantity}) - ₹{item.price}
-                        </div>
-                      ))}
-                    </td>
-                    <td className="border px-4 py-2">₹{order.totalPrice}</td>
-                    <td className="border px-4 py-2">{order.status}</td>
-                    <td className="border px-4 py-2">
-                      {new Date(order.createdAt).toLocaleString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+              ))}
+            </tbody>
+          </table>
           ) : (
             <p className="w-full flex justify-center text-2xl font-bold my-10 text-[#592d1e]">
               No orders found for this user.

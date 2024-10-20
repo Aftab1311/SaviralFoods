@@ -109,6 +109,12 @@ const Login = () => {
               Signup
             </a>
           </p>
+          {/* <p className="text-center mt-4">
+            Forgot your password?{" "}
+            <a href="/forgot-password" className="text-[#347746]">
+              Reset
+            </a>
+          </p> */}
         </form>
 
         {message && <p className="mt-4 text-center text-red-500">{message}</p>}
