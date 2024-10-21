@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import { GoogleLogin } from '@react-oauth/google';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const backend =  import.meta.env.VITE_BACKEND_URL;
@@ -11,6 +14,38 @@ const Login = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
+
+ 
+  const responseMessage = async (response) => {
+    console.log('Google response:', response);
+    
+    try {
+      const { credential } = response; // Get the credential object
+      const idToken = credential; // The ID token (JWT)
+
+      // Decode the token to get user info
+      const credentials = jwtDecode(idToken);
+      console.log('Decoded credentials:', credentials);
+
+      // Optionally, send the ID token to your backend for verification
+      const res = await axios.post(`${backend}/api/v1/users/google-login`, { token: idToken });
+
+      if (res.status === 200) {
+        const { token } = res.data; // Get JWT from your backend response
+        localStorage.setItem("authToken", token); // Store token
+        login(token); // Call the login function to set the user data
+        navigate("/"); // Navigate to home page after successful login
+      }
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
+
+  const errorMessage = (error) => {
+    console.error("Google login error:", error);
+  };
+
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -61,12 +96,23 @@ const Login = () => {
     }
   };
 
+
+
   return (
     <div className="flex flex-col justify-center h-screen items-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login
         </h1>
+        <div className="flex flex-col items-center justify-center">
+           
+           
+            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+
+            <br/>
+            OR
+            <br/>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="identifier" className="block text-gray-700">
