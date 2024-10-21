@@ -20,7 +20,7 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [userEmail, setUserEmail] = useState(""); // Store userEmail state
   const dropdownRef = useRef(null);
-  // const { clearCart } = useContext(CartContext); // Access cartItems from context
+  const { clearCart } = useContext(CartContext); // Access cartItems from context
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -169,9 +169,10 @@ const Navbar = () => {
       to="/login"
       className="flex justify-center px-4 py-2 text-lg text-gray-800 hover:bg-gray-200 bebas"
       onClick={() => {
+        clearCart();
         logout(); // Call logout function
         handleLinkClick("Logout");
-        clearCart(); // Clear cart on logout
+         // Clear cart on logout
       }}
     >
       Logout

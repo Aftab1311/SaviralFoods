@@ -63,14 +63,16 @@ export const ProfilePage = () => {
       </div>
     );
   }
-  
+   console.log(userData?.picture)
 
   return (
     <div className='flex flex-col w-full md:mt-20 mt-28'>
       <div className="flex flex-col justify-center items-center w-full h-[400px] bg-white p-8 rounded-lg shadow-xl">
-        <div>
-          <FaUserCircle size={200} />
-        </div>
+      <img 
+          src={userData?.picture || "fallback_image_url"} // Use a fallback image if no picture
+          alt="photo" 
+          className='w-40 h-40 rounded-full border-2 border-gray-400 flex justify-center items-center'
+        />
         <h2 className="text-2xl font-bold my-6">Profile</h2>
         <div className="flex flex-col md:flex-row md:gap-10 mt-4 items-center">
           <div className="mb-4">
