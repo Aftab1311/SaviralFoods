@@ -23,7 +23,7 @@ import Checkout from "./components/Checkout";
 import AllOrderHistory from "./pages/AllOrderHistory";
 import "./App.css";
 import ForgotPassword from "./components/ForgotPassword";
-import ResetPassword from "./components/ResetPassword";
+// import ResetPassword from "./components/ResetPassword";
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/allorders" element={<AllOrderHistory/>} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
 
 
             <Route path="/login" element={<Login />} />

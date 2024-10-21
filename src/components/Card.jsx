@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { convertImageToBase64 } from '../utils';
+import { useNavigate } from "react-router-dom";
+import { convertImageToBase64 } from "../utils";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -38,12 +38,15 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="p-4 flex-grow flex flex-col justify-between">
         <div>
-          <h3 className="text-sm md:text-md font-semibold mb-2 text-center ">{product.name}</h3>
+          <h3 className="text-sm md:text-md font-semibold mb-2 text-center ">
+            {product.name}
+          </h3>
           <div className="flex justify-center items-center space-x-2 mb-3">
-  <p className="text-[#7fba00] font-bold text-[12px] md:text-base">
-    ₹{product.quantityPrices[0].price.toFixed(2)} / {product.quantityPrices[0].quantity}
-  </p>
-</div>
+            <p className="text-[#7fba00] font-bold text-[12px] md:text-base">
+              ₹{product.quantityPrices[0].price.toFixed(2)} /{" "}
+              {product.quantityPrices[0].quantity}
+            </p>
+          </div>
         </div>
         <div className="flex flex-col space-y-2">
           <button
