@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl border border-slate-200 hover:border-slate-300 cursor-pointer"
+      className="bg-white  p-4 rounded-xl shadow-md overflow-hidden flex flex-col transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl border border-slate-200 hover:border-slate-300 cursor-pointer"
       onClick={handleViewDetails}
     >
       <div className="relative overflow-hidden group">
@@ -36,13 +36,13 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
-      <div className="p-4 flex-grow flex flex-col justify-between">
+      <div className="py-6 flex-grow flex flex-col justify-between">
         <div>
-          <h3 className="text-sm md:text-md font-semibold mb-2 text-center ">
+          <h3 className="text-[12px] md:text-base font-bold mb-2 text-center ">
             {product.name}
           </h3>
           <div className="flex justify-center items-center space-x-2 mb-3">
-            <p className="text-[#7fba00] font-bold text-[12px] md:text-base">
+            <p className="text-[#7fba00] font-bold text-[12px] md:text-sm">
               ₹{product.quantityPrices[0].price.toFixed(2)} /{" "}
               {product.quantityPrices[0].quantity}
             </p>
@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex flex-col space-y-2">
           <button
-            className="bg-[#7fba00] text-white md:font-semibold md:py-2 md:px-4 rounded-full hover:bg-[#6ca300] transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-[#7fba00] text-white text-sm md:font-semibold  py-2 px-2 md:px-2 rounded-full hover:bg-[#6ca300] transition duration-300 ease-in-out transform hover:scale-105"
             onClick={handleCheckProduct}
           >
             Check Product

@@ -134,7 +134,7 @@ export const Products = () => {
 
   return (
     <div className="bg-white py-6">
-      <div className="container mx-auto px-4">
+      <div className="w-full  flex flex-col items-center justify-center lg:px-10">
         {/* Small and Medium devices layout */}
         <div className="md:hidden text-center mb-10">
           <div className="flex flex-col items-center mb-6">
@@ -224,8 +224,9 @@ export const Products = () => {
             </div>
           </div>
         </div>
+
         <div className="w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 md:grid-cols-4 md:gap-4 md:px-10">
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-6 lg:gap-8 ">
             {filteredProducts.map((product) => (
               <div key={product.product_id} className="w-full p-2">
                 <ProductCard product={product} />
@@ -233,6 +234,7 @@ export const Products = () => {
             ))}
           </div>
         </div>
+
         <div className="w-full flex justify-center items-center mt-8">
           <Link
             to="/shop"
