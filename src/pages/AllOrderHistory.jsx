@@ -80,6 +80,9 @@ const AllOrderHistory = () => {
                   Customer
                 </th>
                 <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Phone
+                </th>
+                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Address
                 </th>
                 <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -104,6 +107,9 @@ const AllOrderHistory = () => {
                   </td>
                   <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
                     {order.shippingInfo.name}
+                  </td>
+                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                    {order.shippingInfo.phone}
                   </td>
                   <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
                     {order.shippingInfo.address +

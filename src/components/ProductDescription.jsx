@@ -5,6 +5,7 @@ import { convertImageToBase64 } from "../utils";
 import { CartContext } from "./CartContext";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Check, ShoppingBag } from 'lucide-react';
+import  Comp42  from "./Comp42";
 
 const ProductDescription = () => {
   const { addToCart } = useContext(CartContext);
@@ -166,6 +167,9 @@ const ProductDescription = () => {
           </div>
         </div>
       </div>
+      {/* <div>
+        <Comp42 />
+      </div> */}
     </div>
   );
 };

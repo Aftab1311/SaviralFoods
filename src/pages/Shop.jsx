@@ -4,6 +4,7 @@ import ProductCard from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import '../App.css';
+// import Comp4 from '../components/Comp4';
 
 const Shop = () => {
   const [price, setPrice] = useState(1000);
@@ -73,47 +74,92 @@ const Shop = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [fetchProducts, page, hasMore]);
 
+  // useEffect(() => {
+  //   if (!Array.isArray(products) || products.length === 0) return;
+  
+  //   let result = [...products];
+  
+  //   if (category !== 'All') {
+  //     result = result.filter(product => product.category === category);
+  //   }
+  
+  //   result = result.filter(product => {
+  //     const productPrice = product.quantityPrices[0]?.price || 0;
+  //     return productPrice <= price;
+  //   });
+  
+  //   if (priceFilter === 'highToLow') {
+  //     result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
+  //   } else if (priceFilter === 'lowToHigh') {
+  //     result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
+  //   }
+  
+  //   if (searchTerm) {
+  //     result = result.filter(product =>
+  //       (product.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+  //        product.desc?.toLowerCase().includes(searchTerm.toLowerCase()))
+  //     );
+  //   }
+  
+  //   switch (sortBy) {
+  //     case 'priceAsc':
+  //       result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
+  //       break;
+  //     case 'priceDesc':
+  //       result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
+  //       break;
+  //     case 'popular':
+  //     default:
+  //       break;
+  //   }
+  
+  //   setFilteredProducts(result);
+  // }, [category, price, sortBy, priceFilter, searchTerm, products]);
+
+
+  const categoryOrder = ["rice",  "atta","milk","dairy", "oil","spices","Colddrink"];
+
   useEffect(() => {
     if (!Array.isArray(products) || products.length === 0) return;
   
     let result = [...products];
   
+    // Filter by selected category if not "All"
     if (category !== 'All') {
       result = result.filter(product => product.category === category);
     }
   
+    // Filter by price
     result = result.filter(product => {
       const productPrice = product.quantityPrices[0]?.price || 0;
       return productPrice <= price;
     });
-  
+
+    // Sort by selected price order if applicable
     if (priceFilter === 'highToLow') {
       result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
     } else if (priceFilter === 'lowToHigh') {
       result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
     }
   
+    // Search term filter
     if (searchTerm) {
       result = result.filter(product =>
         (product.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
          product.desc?.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
-  
-    switch (sortBy) {
-      case 'priceAsc':
-        result.sort((a, b) => (a.quantityPrices[0]?.price || 0) - (b.quantityPrices[0]?.price || 0));
-        break;
-      case 'priceDesc':
-        result.sort((a, b) => (b.quantityPrices[0]?.price || 0) - (a.quantityPrices[0]?.price || 0));
-        break;
-      case 'popular':
-      default:
-        break;
-    }
-  
+
+    // Apply custom sorting order based on categoryOrder array
+    result.sort((a, b) => {
+      const aIndex = categoryOrder.indexOf(a.category);
+      const bIndex = categoryOrder.indexOf(b.category);
+      return aIndex - bIndex;
+    });
+
     setFilteredProducts(result);
   }, [category, price, sortBy, priceFilter, searchTerm, products]);
+
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -284,6 +330,7 @@ const Shop = () => {
           <Loader2 className="w-8 h-8 animate-spin text-green-500" />
         </div>
       )}
+     
     </div>
   );
 };

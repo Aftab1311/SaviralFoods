@@ -5,6 +5,7 @@ import AuthContext from "./AuthContext";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
+import { Phone } from "lucide-react";
 
 const Checkout = () => {
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -14,7 +15,7 @@ const Checkout = () => {
 
   useEffect(() => {
     // Get JWT token from local storage
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
 
     if (token) {
       try {
@@ -22,7 +23,7 @@ const Checkout = () => {
         const decodedToken = jwtDecode(token);
         setUserData(decodedToken);
       } catch (error) {
-        console.error('Invalid token:', error);
+        console.error("Invalid token:", error);
       }
     }
   }, []);
@@ -32,6 +33,7 @@ const Checkout = () => {
     name: "",
     address: "",
     city: "",
+    phone: "",
     postalCode: "",
   });
   const [error, setError] = useState("");
@@ -55,18 +57,18 @@ const Checkout = () => {
     }
 
     // Validate shipping info
-    const { name, address, city, postalCode } = shippingInfo;
-    if (!name || !address || !city || !postalCode) {
+    const { name, address, city, phone, postalCode } = shippingInfo;
+    if (!name || !address || !city || !phone || !postalCode) {
       setError("Please fill out all shipping information.");
       return;
     }
 
     const orderDetails = {
-      userId: userData.email,  // Replace with the actual user ID
-      cartItems: cartItems.map(item => ({
+      userId: userData.email, // Replace with the actual user ID
+      cartItems: cartItems.map((item) => ({
         name: item.name,
         quantity: item.quantity,
-        price: item.price
+        price: item.price,
       })),
       shippingInfo,
       totalPrice: mainPrice,
@@ -75,8 +77,12 @@ const Checkout = () => {
 
     try {
       // Make a POST request to create the order
-      const response = await axios.post(`${backend}/api/v1/orders`, orderDetails);
+      const response = await axios.post(
+        `${backend}/api/v1/orders`,
+        orderDetails
+      );
       alert("Order placed successfully:");
+      console.log("Order details:", response.data);
 
       // Clear the cart and navigate to the payment confirmation page
       clearCart();
@@ -88,7 +94,7 @@ const Checkout = () => {
   };
 
   // Calculate total price after discount
-  const totalPrice = getCartTotal() * (1 - (discountPercentage / 100));
+  const totalPrice = getCartTotal() * (1 - discountPercentage / 100);
 
   return (
     <div className="checkout w-full pt-16 bg-[#F5F5F5]">
@@ -99,7 +105,9 @@ const Checkout = () => {
             <h2 className="text-2xl font-medium mb-4">SHIPPING INFORMATION</h2>
             <form onSubmit={handleCheckout}>
               <div className="flex flex-col mb-4">
-                <label htmlFor="name" className="font-medium mb-1">Full Name</label>
+                <label htmlFor="name" className="font-medium mb-1">
+                  Full Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -111,7 +119,23 @@ const Checkout = () => {
                 />
               </div>
               <div className="flex flex-col mb-4">
-                <label htmlFor="address" className="font-medium mb-1">Address</label>
+                <label htmlFor="name" className="font-medium mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  id="phone"
+                  name="phone"
+                  value={shippingInfo.phone}
+                  onChange={handleChange}
+                  className="p-2 border border-[#dadada] rounded-md"
+                  placeholder="1234567890"
+                />
+              </div>
+              <div className="flex flex-col mb-4">
+                <label htmlFor="address" className="font-medium mb-1">
+                  Address
+                </label>
                 <input
                   type="text"
                   id="address"
@@ -123,7 +147,9 @@ const Checkout = () => {
                 />
               </div>
               <div className="flex flex-col mb-4">
-                <label htmlFor="city" className="font-medium mb-1">City</label>
+                <label htmlFor="city" className="font-medium mb-1">
+                  City
+                </label>
                 <input
                   type="text"
                   id="city"
@@ -135,7 +161,9 @@ const Checkout = () => {
                 />
               </div>
               <div className="flex flex-col mb-4">
-                <label htmlFor="postalCode" className="font-medium mb-1">Postal Code</label>
+                <label htmlFor="postalCode" className="font-medium mb-1">
+                  Postal Code
+                </label>
                 <input
                   type="text"
                   id="postalCode"
@@ -160,12 +188,14 @@ const Checkout = () => {
           <div className="order-summary w-full md:w-[30%] h-auto min-h-[300px] p-5 bg-white border border-[#dadada] rounded-xl">
             <h2 className="text-xl font-medium mb-4">Order Summary</h2>
             <div className="flex flex-col gap-4">
-            {cartItems.map((item) => (
-  <div key={item.id} className="flex justify-between">
-    <span>{item.name} ({item.selectedQuantity}) x {item.quantity}</span>
-    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
-  </div>
-))}
+              {cartItems.map((item) => (
+                <div key={item.id} className="flex justify-between">
+                  <span>
+                    {item.name} ({item.selectedQuantity}) x {item.quantity}
+                  </span>
+                  <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+              ))}
               <div className="flex justify-between font-bold mt-4">
                 <span>Sub Total</span>
                 <span>₹{getCartTotal().toFixed(2)}</span>
@@ -184,7 +214,6 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

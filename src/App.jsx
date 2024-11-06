@@ -4,10 +4,8 @@ import HomePage from "./pages/HomePage";
 import Contact from "./pages/Contact";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
-
 import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import Shop from "./pages/Shop";
 import AboutPage from "/src/pages/AboutUs";
 import ProductsShowcase from "./components/ProductsShowcase";
@@ -15,7 +13,6 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import { AuthProvider } from "./components/AuthContext";
-
 import { ProfilePage } from "./components/ProfilePage";
 import ProductDescription from "./components/ProductDescription";
 import Cart from "./components/Cart";
@@ -24,6 +21,11 @@ import AllOrderHistory from "./pages/AllOrderHistory";
 import "./App.css";
 import ForgotPassword from "./components/ForgotPassword";
 // import ResetPassword from "./components/ResetPassword";
+import ShippingPolicy from "./pages/Shipping";
+import RefundPolicy from "./pages/Refund";
+import CancellationReturnRefundPolicy from "./pages/Cancellation";
+import TermsConditions from "./pages/Terms";
+import PrivacyPolicy from "./pages/Privacy";
 
 function App() {
   return (
@@ -51,6 +53,12 @@ function App() {
             <Route path="/profile-page" element={<ProfilePage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/shipping-policy" element={<ShippingPolicy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/cancellation-policy" element={<CancellationReturnRefundPolicy />} />
+            <Route path="/terms" element={<TermsConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
           </Routes>
           <Footer />
         </div>
