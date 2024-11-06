@@ -127,9 +127,7 @@ const Comp42 = () => {
             flex-direction: row;
             gap: 2rem;
             padding: 1rem;;
-           overflow-x: auto; 
-  scrollbar-width: none; 
-  -ms-overflow-style: none;
+           
         }
           
         `}
@@ -141,7 +139,7 @@ const Comp42 = () => {
 
       <div ref={cardsRef} className="overflow-hidden relative mx-auto">
         <div
-          className="scrolling-container py-4 gap-0 md:gap-10"
+          className="scrolling-container py-4 gap-0 md:gap-10 animate-marquee"
           // style={{
           //   animation: startAnimation ? `scrolling ${products.length * 12}s linear infinite` : 'none',
           // }}

@@ -167,9 +167,12 @@ const ProductDescription = () => {
           </div>
         </div>
       </div>
-      {/* <div>
+      <div className="w-full flex justify-center mt-10 items-center text-3xl font-bold">
+        More Products
+      </div>
+      <div>
         <Comp42 />
-      </div> */}
+      </div>
     </div>
   );
 };
