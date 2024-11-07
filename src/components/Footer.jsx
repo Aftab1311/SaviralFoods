@@ -43,7 +43,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-600">
             {[
               { name: 'Shipping Policy', link: '/shipping-policy' },
-              { name: 'Refund Policy', link: '/refund-policy' },
+              // { name: 'Refund Policy', link: '/refund-policy' },
               { name: 'Cancellation and Return Policy', link: '/cancellation-policy  ' },
               { name: 'Terms & Conditions', link: '/terms' },
               { name: 'Privacy Policy', link: '/privacy-policy' }
