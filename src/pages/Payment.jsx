@@ -67,11 +67,11 @@ const Payment = () => {
           // Redirect the user to the payment gateway URL
           window.location.href = redirectInfo.url;
         } else {
-          console.error("Redirect URL not found in the response");
+          console.log("Redirect URL not found in the response");
           // Optionally, notify the user that payment initiation failed.
         }
       } else {
-        console.error("Invalid response structure from payment gateway");
+        console.log("Invalid response structure from payment gateway");
         // Optionally, notify the user of an error with payment initiation.
       }
       // console.log(response.data);
