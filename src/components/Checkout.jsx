@@ -5,7 +5,6 @@ import AuthContext from "./AuthContext";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useLocation } from "react-router-dom";
-import { Phone } from "lucide-react";
 
 const Checkout = () => {
   const backend = import.meta.env.VITE_BACKEND_URL;
@@ -47,50 +46,71 @@ const Checkout = () => {
   };
 
   // Function to handle checkout submission
+  // const handleCheckout = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!isAuthenticated) {
+  //     alert("Please sign in to complete your purchase.");
+  //     navigate("/login");
+  //     return;
+  //   }
+
+  //   // Validate shipping info
+  //   const { name, address, city, phone, postalCode } = shippingInfo;
+  //   if (!name || !address || !city || !phone || !postalCode) {
+  //     setError("Please fill out all shipping information.");
+  //     return;
+  //   }
+
+  //   const orderDetails = {
+  //     userId: userData.email, // Replace with the actual user ID
+  //     cartItems: cartItems.map((item) => ({
+  //       name: item.name,
+  //       quantity: item.quantity,
+  //       price: item.price,
+  //     })),
+  //     shippingInfo,
+  //     totalPrice: mainPrice,
+  //     discount: discountPercentage,
+  //   };
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${backend}/api/v1/orders`,
+  //       orderDetails
+  //     );
+  //     alert("Order placed successfully:");
+  //     console.log("Order details:", response.data);
+
+  //     clearCart();
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.error("Error creating order:", error);
+  //     setError("Failed to place the order. Please try again.");
+  //   }
+  // };
+
   const handleCheckout = async (e) => {
     e.preventDefault();
 
     if (!isAuthenticated) {
       alert("Please sign in to complete your purchase.");
+
       navigate("/login");
+
       return;
     }
-
     // Validate shipping info
     const { name, address, city, phone, postalCode } = shippingInfo;
     if (!name || !address || !city || !phone || !postalCode) {
       setError("Please fill out all shipping information.");
       return;
     }
-
-    const orderDetails = {
-      userId: userData.email, // Replace with the actual user ID
-      cartItems: cartItems.map((item) => ({
-        name: item.name,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-      shippingInfo,
-      totalPrice: mainPrice,
-      discount: discountPercentage,
-    };
-
-    try {
-      // Make a POST request to create the order
-      const response = await axios.post(
-        `${backend}/api/v1/orders`,
-        orderDetails
-      );
-      alert("Order placed successfully:");
-      console.log("Order details:", response.data);
-
-      // Clear the cart and navigate to the payment confirmation page
-      clearCart();
-      navigate("/");
-    } catch (error) {
-      console.error("Error creating order:", error);
-      setError("Failed to place the order. Please try again.");
-    }
+    // Save shipping info to local storage
+    localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
+    const totalAmount = getCartTotal() * (1 - discountPercentage / 100);
+    // Navigate to the payment page with the total amount
+    navigate(`/payment/${totalAmount}`);
   };
 
   // Calculate total price after discount

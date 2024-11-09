@@ -26,6 +26,8 @@ import RefundPolicy from "./pages/Refund";
 import CancellationReturnRefundPolicy from "./pages/Cancellation";
 import TermsConditions from "./pages/Terms";
 import PrivacyPolicy from "./pages/Privacy";
+import Payment from "./pages/Payment";
+import PaymentStatusPage from "./pages/Status";
 
 function App() {
   return (
@@ -58,6 +60,8 @@ function App() {
             <Route path="/cancellation-policy" element={<CancellationReturnRefundPolicy />} />
             <Route path="/terms" element={<TermsConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/payment/:totalAmount" element={<Payment />} />
+            <Route path="/status/:transactionId" element={<PaymentStatusPage />} />
 
           </Routes>
           <Footer />

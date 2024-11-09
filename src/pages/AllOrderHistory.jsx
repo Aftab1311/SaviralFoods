@@ -2,11 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../components/AuthContext";
 import { jwtDecode } from "jwt-decode"; // Correct import for jwtDecode
+import AddOrderModal from "../components/AddOrderModal"; // Import the modal
 
 const AllOrderHistory = () => {
   const [orders, setOrders] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const { isAuthenticated } = useContext(AuthContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const backend = import.meta.env.VITE_BACKEND_URL;
   const [userEmail, setUserEmail] = useState(""); // Store userEmail state
 
@@ -22,30 +24,25 @@ const AllOrderHistory = () => {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get(`${backend}/api/v1/orders`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-          },
-        });
-
-        // Set all the orders without filtering by user email
-        setOrders(response.data);
-      } catch (err) {
-        console.error('Error fetching orders:', err);
-        setError('Failed to load orders');
-      }
-    };
-
-   
-  
-
-    // Fetch orders only if the user is authenticated
-    if (isAuthenticated) {
-      fetchOrders();
-    }
+    if (isAuthenticated) fetchOrders();
   }, [isAuthenticated]);
+
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(`${backend}/api/v1/orders`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      });
+      setOrders(response.data);
+    } catch (err) {
+      setError("Failed to load orders");
+    }
+  };
+
+  const handleOrderCreated = (newOrder) => {
+    setOrders([newOrder, ...orders]);
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -65,86 +62,98 @@ const AllOrderHistory = () => {
 
   return (
     <div className="w-full px-5 py-10 bg-white mt-20">
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+      >
+        Add Order
+      </button>
       {isAuthenticated && userEmail === "admin@gmail.com" ? (
         <>
+          <AddOrderModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onOrderCreated={handleOrderCreated}
+          />
           <h1 className="text-3xl font-bold mb-6 text-center">Order History</h1>
           {error && <p className="text-red-500 text-center">{error}</p>}
           {orders.length > 0 ? (
             <table className="min-w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order ID
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Customer
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Phone
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Address
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Items
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Total Amount
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Created At
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {sortedOrders.map((order) => (
-                <tr key={order._id} className="hover:bg-gray-50">
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    {order._id}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    {order.shippingInfo.name}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    {order.shippingInfo.phone}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    {order.shippingInfo.address +
-                      ", " +
-                      order.shippingInfo.city +
-                      ", " + order.shippingInfo.postalCode}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                  {order.items.map((item, index) => (
-                      <div key={index}>
-                        {item.name} (x{item.quantity}) - ₹{item.price}
-                      </div>
-                    ))}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    ₹{order.totalPrice}
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    <span
-                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        order.status === "paid"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
-                    {formatDate(order.createdAt)}
-                  </td>
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Order ID
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Customer
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Phone
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Address
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Items
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Total Amount
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Created At
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {sortedOrders.map((order) => (
+                  <tr key={order._id} className="hover:bg-gray-50">
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.MUID.slice(-5)}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.shippingInfo.name}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.shippingInfo.phone}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.shippingInfo.address +
+                        ", " +
+                        order.shippingInfo.city +
+                        ", " +
+                        order.shippingInfo.postalCode}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {order.items.map((item, index) => (
+                        <div key={index}>
+                          {item.name} (x{item.quantity}) - ₹{item.price}
+                        </div>
+                      ))}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      ₹{order.amount / 100}
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          order.status === "paid"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
+                      {formatDate(order.createdAt)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ) : (
             <p className="w-full flex justify-center text-2xl font-bold my-10 text-[#592d1e]">
               No orders found for this user.
@@ -152,7 +161,9 @@ const AllOrderHistory = () => {
           )}
         </>
       ) : (
-        <p className="text-center text-xl">You are not authorized to view this page.</p>
+        <p className="text-center text-xl">
+          You are not authorized to view this page.
+        </p>
       )}
     </div>
   );
