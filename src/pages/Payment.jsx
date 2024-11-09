@@ -60,8 +60,19 @@ const Payment = () => {
     try {
       // Make a POST request to create the order
       const response = await axios.post(`${backend}/neworder`, orderDetails);
-      if (response.data && response.data.data.instrumentResponse.redirectInfo.url){
-            window.location.href = response.data.data.instrumentResponse.redirectInfo.url;
+      if (response.data && response.data.data && response.data.data.instrumentResponse) {
+        const redirectInfo = response.data.data.instrumentResponse.redirectInfo;
+        
+        if (redirectInfo && redirectInfo.url) {
+          // Redirect the user to the payment gateway URL
+          window.location.href = redirectInfo.url;
+        } else {
+          console.error("Redirect URL not found in the response");
+          // Optionally, notify the user that payment initiation failed.
+        }
+      } else {
+        console.error("Invalid response structure from payment gateway");
+        // Optionally, notify the user of an error with payment initiation.
       }
       // console.log(response.data);
     } catch (error) {
