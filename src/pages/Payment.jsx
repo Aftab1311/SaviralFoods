@@ -15,7 +15,7 @@ const Payment = () => {
   const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-  console.log(totalAmount, shippingInfo, cartItems);
+  // console.log(totalAmount, shippingInfo, cartItems);
 
   // Decode JWT token to get user details
   useEffect(() => {
@@ -74,7 +74,7 @@ const Payment = () => {
         console.log("Invalid response structure from payment gateway");
         // Optionally, notify the user of an error with payment initiation.
       }
-      // console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Payment failed:", error);
       setError("Payment failed. Please try again later.");
