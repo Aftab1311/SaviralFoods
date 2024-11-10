@@ -156,7 +156,7 @@ const AllOrderHistory = () => {
             </table>
           ) : (
             <p className="w-full flex justify-center text-2xl font-bold my-10 text-[#592d1e]">
-              No orders found for this user.
+              Loading order history...
             </p>
           )}
         </>
