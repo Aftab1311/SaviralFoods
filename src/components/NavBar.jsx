@@ -121,6 +121,9 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <Link to="https://www.shiprocket.in/shipment-tracking/" target='_blank'>
+          <li className='py-2 md:py-0 uppercase text-white font-semibold hover:text-green-500 transition-colors duration-300'>Track Order</li>
+          </Link>
         </ul>
         <div className='flex gap-4 items-center'>
          {/* Conditionally render Dashboard for admin */}
