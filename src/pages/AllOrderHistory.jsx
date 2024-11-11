@@ -10,16 +10,16 @@ const AllOrderHistory = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const backend = import.meta.env.VITE_BACKEND_URL;
-  const [userEmail, setUserEmail] = useState(""); // Store userEmail state
+  const [userEmail, setUserEmail] = useState("");
+  const [filter, setFilter] = useState("all"); // Filter state for paid/unpaid
+  const [currentPage, setCurrentPage] = useState(1); // Pagination state
+  const itemsPerPage = 20; // Number of orders per page
 
   useEffect(() => {
-    // Retrieve the token from localStorage
-    const token = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
-
-    // Decode the token to extract the email
+    const token = localStorage.getItem("authToken");
     if (token) {
       const decodedToken = jwtDecode(token);
-      setUserEmail(decodedToken.email); // Store email in state
+      setUserEmail(decodedToken.email);
     }
   }, [isAuthenticated]);
 
@@ -56,18 +56,51 @@ const AllOrderHistory = () => {
     });
   };
 
-  const sortedOrders = [...orders].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
+  const sortedOrders = [...orders]
+    .filter((order) => (filter === "all" ? true : order.status === filter))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  // Calculate the current page orders
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentOrders = sortedOrders.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(sortedOrders.length / itemsPerPage);
 
   return (
     <div className="w-full px-5 py-10 bg-white mt-20">
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+        className="bg-green-500 rounded-3xl px-8 py-2 text-white 2 font-bold mb-4"
       >
         Add Order
       </button>
+
+      <div className="flex justify-center gap-4 mb-6">
+        <button
+          onClick={() => setFilter("all")}
+          className={`px-4 py-2 rounded ${filter === "all" ? "bg-green-500 rounded-3xl px-8 py-1 text-white" : "bg-gray-300 rounded-3xl px-8 py-1"}`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => setFilter("paid")}
+          className={`px-4 py-2 rounded ${filter === "paid" ? "bg-green-500 rounded-3xl px-8 py-1 text-white" : "bg-gray-300 rounded-3xl px-8 py-1"}`}
+        >
+          Paid
+        </button>
+        <button
+          onClick={() => setFilter("unpaid")}
+          className={`px-4 py-2 rounded ${filter === "unpaid" ? "bg-green-500 rounded-3xl px-8 py-1 text-white" : "bg-gray-300 rounded-3xl px-8 py-1"}`}
+        >
+          Unpaid
+        </button>
+      </div>
+
       {isAuthenticated && userEmail === "admin@gmail.com" ? (
         <>
           <AddOrderModal
@@ -108,7 +141,7 @@ const AllOrderHistory = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {sortedOrders.map((order) => (
+                {currentOrders.map((order) => (
                   <tr key={order._id} className="hover:bg-gray-50">
                     <td className="py-4 px-4 whitespace-nowrap text-sm text-center">
                       {order.MUID.slice(-5)}
@@ -159,6 +192,21 @@ const AllOrderHistory = () => {
               Loading order history...
             </p>
           )}
+
+          {/* Pagination */}
+          <div className="flex justify-center mt-4">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => handlePageChange(i + 1)}
+                className={`px-3 py-1 mx-1 rounded ${
+                  currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-300"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
         </>
       ) : (
         <p className="text-center text-xl">
