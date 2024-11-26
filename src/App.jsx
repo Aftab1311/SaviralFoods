@@ -28,16 +28,18 @@ import TermsConditions from "./pages/Terms";
 import PrivacyPolicy from "./pages/Privacy";
 import Payment from "./pages/Payment";
 import PaymentStatusPage from "./pages/Status";
+import TemporaryDownPage from "./pages/TemporaryDownPage";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="App">
-          <Navbar />
+        {/*}  <Navbar />
           <ScrollToTop />
+          */}
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/shop" element={<Shop />} />
 
@@ -47,7 +49,6 @@ function App() {
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/allorders" element={<AllOrderHistory/>} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
 
 
             <Route path="/login" element={<Login />} />
@@ -62,9 +63,11 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/payment/:totalAmount" element={<Payment />} />
             <Route path="/status/:transactionId" element={<PaymentStatusPage />} />
+            */}
+             <Route path="/" element={<TemporaryDownPage />} />
 
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </AuthProvider>
