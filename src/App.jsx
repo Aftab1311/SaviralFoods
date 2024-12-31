@@ -35,11 +35,11 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="App">
-        {/*}  <Navbar />
+          <Navbar />
           <ScrollToTop />
-          */}
+
           <Routes>
-            {/* <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/shop" element={<Shop />} />
 
@@ -47,9 +47,8 @@ function App() {
             <Route path="/" element={<ProductsShowcase />} />
             <Route path="/products/:id" element={<ProductDescription />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route path="/allorders" element={<AllOrderHistory/>} />
+            <Route path="/allorders" element={<AllOrderHistory />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-
 
             <Route path="/login" element={<Login />} />
             <Route path="/signup-page" element={<Signup />} />
@@ -58,16 +57,21 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/shipping-policy" element={<ShippingPolicy />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
-            <Route path="/cancellation-policy" element={<CancellationReturnRefundPolicy />} />
+            <Route
+              path="/cancellation-policy"
+              element={<CancellationReturnRefundPolicy />}
+            />
             <Route path="/terms" element={<TermsConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/payment/:totalAmount" element={<Payment />} />
-            <Route path="/status/:transactionId" element={<PaymentStatusPage />} />
-            */}
-             <Route path="/" element={<TemporaryDownPage />} />
+            <Route
+              path="/status/:transactionId"
+              element={<PaymentStatusPage />}
+            />
 
+            {/* <Route path="/" element={<TemporaryDownPage />} /> */}
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
